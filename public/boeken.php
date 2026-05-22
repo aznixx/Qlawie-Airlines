@@ -1,6 +1,6 @@
 <?php
 $pageTitle = "Boeken - Qlawie Airlines";
-include "header.php";
+include __DIR__ . "/../app/includes/navbar.php";
 ?>
 
 <main class="px-6 py-12">
@@ -36,4 +36,4 @@ include "header.php";
     </section>
 </main>
 
-<?php include "footer.php"; ?>
+<?php include __DIR__ . "/../app/includes/footer.php"; ?>

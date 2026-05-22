@@ -1,7 +1,7 @@
 <?php
 $pageTitle = "Zoekresultaten - Qlawie Airlines";
 $zoek = $_GET["zoek"] ?? "";
-include "header.php";
+include __DIR__ . "/../app/includes/navbar.php";
 ?>
 
 <main>
@@ -16,10 +16,10 @@ include "header.php";
     <section class="px-6 py-10">
         <div class="mx-auto max-w-6xl">
             <div class="rounded-md border border-slate-200 p-5">
-                
+
             </div>
         </div>
     </section>
 </main>
 
-<?php include "footer.php"; ?>
+<?php include __DIR__ . "/../app/includes/footer.php"; ?>
