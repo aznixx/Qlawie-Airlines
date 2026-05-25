@@ -1,8 +1,10 @@
 <?php
 $pageTitle = "Bestemmingen - Qlawie Airlines";
 include __DIR__ . "/../app/includes/navbar.php";
+include __DIR__ . "/../app/config/pdo.php";
 
-$bestemmingTitel = null;
+$stmt = $pdo->query('SELECT * FROM bestemmingen');
+$bestemmingen = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <main>
@@ -22,16 +24,18 @@ $bestemmingTitel = null;
     <section class="px-6 py-10">
         <div class="mx-auto max-w-6xl">
             <div class="mt-8 grid gap-5 md:grid-cols-3">
-                <article class="overflow-hidden rounded-md border border-slate-200 bg-white">
-                    <img class="h-40 w-full object-cover" src="assets/landingpage.jpg" alt="">
-                    <div class="p-5">
-                        <p class="text-sm font-bold text-accent">4 dagen</p>
-                        <h2 class="font-fraunces text-2xl font-semibold">Barcelona citytrip</h2>
-                        <p class="mt-2 text-sm text-slate-600">Zon, tapas en een hotel dicht bij het centrum.</p>
-                        <p class="mt-4 font-bold text-accent">Vanaf EUR 299</p>
-                        <a class="mt-4 inline-block rounded-md bg-accent px-4 py-2 text-sm font-bold text-white hover:bg-black" href="boeken.php">Boeken</a>
-                    </div>
-                </article>
+                <?php foreach ($bestemmingen as $bestemming) { ?>
+                    <article class="overflow-hidden rounded-md border border-slate-200 bg-white">
+                        <img class="h-40 w-full object-cover" src="<?= htmlspecialchars($bestemming['afbeelding']) ?>" alt="">
+                        <div class="p-5">
+                            <p class="text-sm font-bold text-accent"><?= htmlspecialchars($bestemming['aantal_dagen']) ?> dagen</p>
+                            <h2 class="font-fraunces text-2xl font-semibold"><?= htmlspecialchars($bestemming["naam"]) ?></h2>
+                            <p class="mt-2 text-sm text-slate-600"><?= htmlspecialchars($bestemming['korte_beschrijving']) ?></p>
+                            <p class="mt-4 font-bold text-accent">€<?= htmlspecialchars($bestemming['prijs_reis']) ?></p>
+                            <a class="mt-4 inline-block rounded-md bg-accent px-4 py-2 text-sm font-bold text-white hover:bg-black" href="boeken.php">Boeken</a>
+                        </div>
+                    </article>
+                <?php } ?>
             </div>
         </div>
     </section>

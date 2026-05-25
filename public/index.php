@@ -1,11 +1,12 @@
 <?php
+session_start();
 $pageTitle = "Qlawie Airlines";
-include __DIR__ . "/../app/includes/navbar.php";
 include __DIR__ . "/../app/config/pdo.php";
 
-$stmt = $pdo->query('SELECT * FROM bestemmingen');
-$bestemmingen = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$stmt = $pdo->query("SELECT * FROM bestemmingen");
+$bestemmingen = $stmt->fetchAll();
 
+include __DIR__ . "/../app/includes/navbar.php";
 ?>
 
 <main>
@@ -41,12 +42,13 @@ $bestemmingen = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <form class="grid gap-3 md:grid-cols-2 lg:grid-cols-4" action="resultaten.php" method="get">
                 <label class="grid gap-1">
                     <span class="text-xs font-bold uppercase tracking-wide text-slate-500">Van</span>
-                    <input class="h-12 rounded-md border border-slate-200 px-3 text-sm font-semibold outline-none focus:border-accent" type="text" value="Amsterdam" aria-label="Vertrekplaats">
+                    <input class="h-12 rounded-md border border-slate-200 px-3 text-sm font-semibold outline-none focus:border-accent" type="text" placeholder="Vertrek vliegveld" aria-label="Vertrekplaats">
                 </label>
 
                 <label class="grid gap-1">
                     <span class="text-xs font-bold uppercase tracking-wide text-slate-500">Naar</span>
-                    <input class="h-12 rounded-md border border-slate-200 px-3 text-sm font-semibold outline-none focus:border-accent" type="text" name="zoek" placeholder="Bestemming" aria-label="Bestemming">
+                    <input id="van" class="h-12 rounded-md border border-slate-200 px-3 text-sm font-semibold outline-none focus:border-accent" type="text" name="zoek" autocomplete="off" placeholder="Bestemming" aria-label="Bestemming">
+                    <div id="van-suggestions" class="absolute  left-0 z-10 w-full bg-white border border-slate-200 rounded-md shadow-md hidden max-h-48 overflow-y-auto"></div>
                 </label>
 
                 <label class="grid gap-1">
@@ -97,16 +99,16 @@ $bestemmingen = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </div>
             <div class="mt-6 grid gap-5 md:grid-cols-3">
                 <?php foreach ($bestemmingen as $bestemming) { ?>
-                <article class="overflow-hidden rounded-md border border-slate-200 bg-white">
-                    <img class="h-40 w-full object-cover" src="<?= htmlspecialchars($bestemming['afbeelding']) ?>" alt="">
-                    <div class="p-5">
-                        <p class="text-sm font-bold text-accent"><?= htmlspecialchars($bestemming['aantal_dagen']) ?> dagen</p>
-                        <h2 class="font-fraunces text-2xl font-semibold"><?= htmlspecialchars($bestemming["naam"]) ?></h2>
-                        <p class="mt-2 text-sm text-slate-600"><?= htmlspecialchars($bestemming['korte_beschrijving']) ?></p>
-                        <p class="mt-4 font-bold text-accent">€<?= htmlspecialchars($bestemming['prijs_reis']) ?></p>
-                        <a class="mt-4 inline-block rounded-md bg-accent px-4 py-2 text-sm font-bold text-white hover:bg-black" href="boeken.php">Boeken</a>
-                    </div>
-                </article>
+                    <article class="overflow-hidden rounded-md border border-slate-200 bg-white">
+                        <img class="h-40 w-full object-cover" src="<?= htmlspecialchars($bestemming['afbeelding']) ?>" alt="">
+                        <div class="p-5">
+                            <p class="text-sm font-bold text-accent"><?= htmlspecialchars($bestemming['aantal_dagen']) ?> dagen</p>
+                            <h2 class="font-fraunces text-2xl font-semibold"><?= htmlspecialchars($bestemming["naam"]) ?></h2>
+                            <p class="mt-2 text-sm text-slate-600"><?= htmlspecialchars($bestemming['korte_beschrijving']) ?></p>
+                            <p class="mt-4 font-bold text-accent">€<?= htmlspecialchars($bestemming['prijs_reis']) ?></p>
+                            <a class="mt-4 inline-block rounded-md bg-accent px-4 py-2 text-sm font-bold text-white hover:bg-black" href="boeken.php">Boeken</a>
+                        </div>
+                    </article>
                 <?php } ?>
             </div>
         </div>
@@ -135,6 +137,42 @@ $bestemmingen = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </div>
         </div>
     </section>
-</main>
 
+</main>
+<script>
+    const bestemmingen = <?php echo json_encode(array_column($bestemmingen, 'naam')); ?>;
+
+    const dinosaur = document.getElementById('van');
+    const suggestions = document.getElementById('van-suggestions');
+
+    dinosaur.addEventListener('input', () => {
+        const niekisvanmij = dinosaur.value.toLowerCase();
+        suggestions.innerHTML = '';
+
+        if (!niekisvanmij) {
+            suggestions.classList.add('hidden');
+            return;
+        }
+
+        const matches = bestemmingen.filter(b => b.toLowerCase().includes(niekisvanmij));
+
+        if (matches.length === 0) {
+            suggestions.classList.add('hidden');
+            return;
+        }
+
+        matches.forEach(match => {
+            const div = document.createElement('div');
+            div.textContent = match;
+            div.classList = 'px-4 py-2 cursor-pointer hover:bg-slate-100 text-sm';
+            div.addEventListener('click', () => {
+                dinosaur.value = match;
+                suggestions.classList.add('hidden');
+            });
+            suggestions.appendChild(div);
+        });
+
+        suggestions.classList.remove('hidden');
+    });
+</script>
 <?php include __DIR__ . "/../app/includes/footer.php"; ?>
