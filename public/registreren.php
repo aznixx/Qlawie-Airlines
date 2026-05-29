@@ -32,9 +32,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'wachtwoord_herhalen' => $wachtwoord_h
     ];
 
-    $wachtwoord_hash = password_hash($wachtwoord, PASSWORD_DEFAULT);
+    $wachtwoord_niek = password_hash($wachtwoord, PASSWORD_DEFAULT);
 
-    $stmt = $pdo->prepare("INSERT INTO gebruikers (voornaam, achternaam, email, telefoon, wachtwoord_hash) VALUES ('$voornaam', '$achternaam', '$email', '$telefoon', '$wachtwoord_hash')");
+    $stmt = $pdo->prepare("INSERT INTO gebruikers (voornaam, achternaam, email, telefoon, wachtwoord_hash) VALUES ('$voornaam', '$achternaam', '$email', '$telefoon', '$wachtwoord_niek')");
     $stmt->execute();
 }
 
