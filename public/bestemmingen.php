@@ -17,7 +17,7 @@
     <section class="px-6 py-10">
         <div class="mx-auto max-w-6xl">
             <div class="mt-8 grid gap-5 md:grid-cols-3">
-                <?php foreach ($bestemmingen as $bestemming) { ?>
+                <?php foreach ($bestemmingen as $bestemming): ?>
                     <a
                         class="group block overflow-hidden rounded-md border border-black bg-white transition hover:-translate-y-1 hover:border-accent hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2"
                         href="reis-info.php?slug=<?= rawurlencode($bestemming['slug']) ?>"
@@ -33,7 +33,7 @@
                             </div>
                         </div>
                     </a>
-                <?php } ?>
+                <?php endforeach; ?>
             </div>
         </div>
     </section>
