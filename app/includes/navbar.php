@@ -16,7 +16,7 @@ $basePath = $basePath ?? '';
     <link rel="stylesheet" href="<?php echo $basePath; ?>output.css">
 </head>
 
-<body class="bg-white font-sans text-slate-950 overflow-y-auto no-scrollbar">
+<body class="bg-white font-sans text-black overflow-y-auto no-scrollbar">
     <nav class="sticky h-16 top-0 z-20 w-full border-b border-accent bg-white shadow-sm">
         <div class="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-3">
             <a href="<?php echo $basePath; ?>index.php" aria-label="Qlawie Airlines home">

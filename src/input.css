@@ -4,6 +4,10 @@
 @source "../app/includes/*.php";
 
 @theme {
+    --color-*: initial;
+    --tracking-*: initial;
+    --color-black: #000;
+    --color-white: #fff;
     --color-accent: #bf9241;
     --font-fraunces: "Fraunces", serif;
 }
