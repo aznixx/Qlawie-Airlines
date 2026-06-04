@@ -1,5 +1,5 @@
 <?php
-include __DIR__ . "/../app/page-includes/verwerk-inloggen.php"; 
+include __DIR__ . "/../app/page-includes/verwerk-inloggen.php";
 
 include __DIR__ . "/../app/includes/navbar.php";
 ?>
@@ -21,7 +21,7 @@ include __DIR__ . "/../app/includes/navbar.php";
                 <input class="h-12 rounded-md border border-black px-3 outline-none focus:border-accent" type="password" name="wachtwoord" required>
             </label>
 
-            <button class="h-12 rounded-md bg-accent px-5 text-sm font-bold text-white hover:bg-black" type="submit" name="login">Inloggen</button>
+            <button class="h-12 rounded-md bg-accent px-5 text-sm font-bold text-white hover:bg-black" type="submit">Inloggen</button>
         </form>
 
         <p class="mt-5 text-sm text-black">

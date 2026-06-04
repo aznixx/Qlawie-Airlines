@@ -8,20 +8,37 @@ if (isset($_SESSION['gebruiker_id'])) {
 
 $pageTitle = "Inloggen - Qlawie Airlines";
 
+$email = '';
+$wachtwoord = '';
+$wachtwoordCorrect = '';
+$foutmelding = '';
 
-if (isset($_POST['login'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     require_once __DIR__ . "/../config/pdo.php";
 
-    $email = $_POST['email'];
-    $wachtwoord = $_POST['wachtwoord'];
+    $email = trim($_POST['email']);
+    $wachtwoord = trim($_POST['wachtwoord']);
 
-    $stmt = $pdo->query("SELECT * FROM gebruikers WHERE email = '$email'");
-    $gebruiker = $stmt->fetch();
+    if ($email === '' || $wachtwoord === '') {
+        $foutmelding = "Vul je e-mail en wachtwoord in.";
+    } else {
+        $stmt = $pdo->query("SELECT * FROM gebruikers WHERE email = '$email'");
+        $gebruiker = $stmt->fetch();
 
+        if ($gebruiker && password_verify($wachtwoord, $gebruiker['wachtwoord_hash'])) {
+            $wachtwoordCorrect = true;
+        } else {
+            $wachtwoordCorrect = false;
+        }
 
-    $_SESSION['gebruiker_id'] = $gebruiker['id'];
-    $_SESSION['rol'] = $gebruiker['rol'];
+        if ($wachtwoordCorrect) {
+            $_SESSION['gebruiker_id'] = $gebruiker['id'];
+            $_SESSION['rol'] = $gebruiker['rol'];
 
-    header("Location: index.php");
-    exit;
+            header("Location: index.php");
+            exit;
+        }
+
+        $foutmelding = "Onjuiste email of wachtwoord.";
+    }
 }
