@@ -1,4 +1,7 @@
-<?php include __DIR__ . "/../app/page-includes/haal-bestemmingen-op.php"; ?>
+<?php 
+include __DIR__ . "/../app/page-includes/haal-bestemmingen-op.php"; 
+include __DIR__ . "/../app/includes/navbar.php";
+?>
 
 <main>
     <section class="bg-white px-6 py-10">

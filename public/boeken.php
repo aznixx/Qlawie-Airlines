@@ -1,4 +1,8 @@
-<?php include __DIR__ . "/../app/page-includes/laad-boekformulier.php"; ?>
+<?php 
+include __DIR__ . "/../app/page-includes/laad-boekformulier.php"; 
+include __DIR__ . "/../app/includes/navbar.php";
+?>
+
 
 <main class="px-6 py-12">
     <section class="mx-auto max-w-4xl">

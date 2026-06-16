@@ -1,4 +1,7 @@
-<?php include __DIR__ . "/../app/page-includes/laad-over-ons-pagina.php"; ?>
+<?php 
+include __DIR__ . "/../app/page-includes/laad-over-ons-pagina.php"; 
+include __DIR__ . "/../app/includes/navbar.php";
+?>
 
 <main class="px-6 py-12">
     <section class="mx-auto max-w-5xl">

@@ -1,5 +1,6 @@
 <?php
 include __DIR__ . "/../app/page-includes/verwerk-registratie.php";
+include __DIR__ . "/../app/includes/navbar.php";
 ?>
 
 <main class="px-6 py-12">

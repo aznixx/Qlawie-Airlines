@@ -22,7 +22,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($email === '' || $wachtwoord === '') {
         $foutmelding = "Vul je e-mail en wachtwoord in.";
     } else {
-        $stmt = $pdo->query("SELECT * FROM gebruikers WHERE email = '$email'");
+        $stmt = $pdo->prepare("SELECT * FROM gebruikers WHERE email = :email");
+        $stmt->bindParam(':email', $email);
+        $stmt->execute();
         $gebruiker = $stmt->fetch();
 
         if ($gebruiker && password_verify($wachtwoord, $gebruiker['wachtwoord_hash'])) {

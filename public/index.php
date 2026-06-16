@@ -1,4 +1,7 @@
-<?php include __DIR__ . "/../app/page-includes/laad-homepage.php"; ?>
+<?php 
+include __DIR__ . "/../app/page-includes/laad-homepage.php"; 
+include __DIR__ . "/../app/includes/navbar.php";
+?>
 
 <main>
     <!-- Landing section en nee dit is niet met ai niek -->

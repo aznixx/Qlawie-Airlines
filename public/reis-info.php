@@ -1,4 +1,7 @@
-<?php include __DIR__ . "/../app/page-includes/haal-reisinformatie-op.php"; ?>
+<?php 
+include __DIR__ . "/../app/page-includes/haal-reisinformatie-op.php"; 
+include __DIR__ . "/../app/includes/navbar.php";
+?>
 
 <main class="bg-slate-50">
     <section class="relative overflow-hidden px-6 py-16 text-white">
