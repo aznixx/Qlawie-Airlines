@@ -149,43 +149,52 @@ include __DIR__ . "/../app/includes/navbar.php";
                 <p class="text-xs font-bold uppercase text-accent">Review</p>
                 <h2 class="font-fraunces text-2xl font-bold">Plaats een recensie</h2>
 
-                <form class="mt-5 grid gap-4">
-                    <div class="grid gap-4 md:grid-cols-2">
-                        <label class="grid gap-1">
-                            <span class="text-sm font-semibold">Boeking</span>
-                            <select class="h-11 rounded-md border border-black px-3 outline-none focus:border-accent">
-                                <?php foreach ($boekingen as $boeking) { ?>
-                                    <?php
-                                    $titel = $boeking['titel'];
+                <?php
+                $heeftReisBoeking = false;
 
-                                    if ($boeking['vlucht_id']) {
-                                        $titel = "Vlucht naar " . $boeking['stad'];
-                                    }
-                                    ?>
-                                    <option><?= $titel ?></option>
-                                <?php } ?>
-                            </select>
+                foreach ($boekingen as $boeking) {
+                    if (!$boeking['vlucht_id']) {
+                        $heeftReisBoeking = true;
+                    }
+                }
+                ?>
+
+                <?php if ($heeftReisBoeking) { ?>
+                    <form class="mt-5 grid gap-4" action="../app/page-includes/verwerk-recensie.php" method="post">
+                        <div class="grid gap-4 md:grid-cols-2">
+                            <label class="grid gap-1">
+                                <span class="text-sm font-semibold">Reis</span>
+                                <select class="h-11 rounded-md border border-black px-3 outline-none focus:border-accent" name="reis_id">
+                                    <?php foreach ($boekingen as $boeking) { ?>
+                                        <?php if (!$boeking['vlucht_id']) { ?>
+                                            <option value="<?= $boeking['reis_id'] ?>"><?= $boeking['titel'] ?></option>
+                                        <?php } ?>
+                                    <?php } ?>
+                                </select>
+                            </label>
+
+                            <label class="grid gap-1">
+                                <span class="text-sm font-semibold">Score</span>
+                                <select class="h-11 rounded-md border border-black px-3 outline-none focus:border-accent" name="rating">
+                                    <option value="5">5 sterren</option>
+                                    <option value="4">4 sterren</option>
+                                    <option value="3">3 sterren</option>
+                                    <option value="2">2 sterren</option>
+                                    <option value="1">1 ster</option>
+                                </select>
+                            </label>
+                        </div>
+
+                        <label class="grid gap-1">
+                            <span class="text-sm font-semibold">Bericht</span>
+                            <textarea class="min-h-28 rounded-md border border-black p-3 outline-none focus:border-accent" name="bericht" placeholder="Schrijf kort hoe je reis was"></textarea>
                         </label>
 
-                        <label class="grid gap-1">
-                            <span class="text-sm font-semibold">Score</span>
-                            <select class="h-11 rounded-md border border-black px-3 outline-none focus:border-accent">
-                                <option>5 sterren</option>
-                                <option>4 sterren</option>
-                                <option>3 sterren</option>
-                                <option>2 sterren</option>
-                                <option>1 ster</option>
-                            </select>
-                        </label>
-                    </div>
-
-                    <label class="grid gap-1">
-                        <span class="text-sm font-semibold">Bericht</span>
-                        <textarea class="min-h-28 rounded-md border border-black p-3 outline-none focus:border-accent" placeholder="Schrijf kort hoe je reis was"></textarea>
-                    </label>
-
-                    <button class="h-11 rounded-md bg-accent px-4 text-sm font-bold text-white hover:bg-black" type="button">Recensie plaatsen</button>
-                </form>
+                        <button class="h-11 rounded-md bg-accent px-4 text-sm font-bold text-white hover:bg-black" type="submit">Recensie plaatsen</button>
+                    </form>
+                <?php } else { ?>
+                    <p class="mt-4 text-sm font-bold">Je kunt een review plaatsen na een geboekte pakketreis.</p>
+                <?php } ?>
             </section>
         </div>
     </section>

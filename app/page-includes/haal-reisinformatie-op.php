@@ -5,6 +5,7 @@ $slug = trim($_GET["slug"] ?? "");
 $bestemmingNaam = trim($_GET["bestemming"] ?? "");
 $bestemming = false;
 $reis = false;
+$recensies = [];
 $notFound = false;
 
 if ($slug !== "") {
@@ -35,4 +36,13 @@ if (!$bestemming) {
     $stmt->bindParam(':bestemming_id', $bestemming_id);
     $stmt->execute();
     $reis = $stmt->fetch();
+
+    if ($reis) {
+        $reis_id = $reis['id'];
+
+        $stmt = $pdo->prepare("SELECT * FROM recensies WHERE reis_id = :reis_id AND status = 'goedgekeurd' ORDER BY id DESC");
+        $stmt->bindParam(':reis_id', $reis_id);
+        $stmt->execute();
+        $recensies = $stmt->fetchAll();
+    }
 }

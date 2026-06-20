@@ -100,6 +100,29 @@ include __DIR__ . "/../app/includes/navbar.php";
                     </div>
                 </div>
             </section>
+
+            <section class="px-6 py-12">
+                <div class="mx-auto max-w-6xl">
+                    <p class="text-xs font-bold uppercase text-accent">Reviews</p>
+                    <h2 class="font-fraunces text-4xl font-bold">Wat klanten zeggen</h2>
+
+                    <div class="mt-6 grid gap-5 md:grid-cols-3">
+                        <?php if (empty($recensies)) { ?>
+                            <div class="rounded-md border border-black bg-white p-5">
+                                <p class="font-bold">Nog geen reviews.</p>
+                            </div>
+                        <?php } ?>
+
+                        <?php foreach ($recensies as $recensie) { ?>
+                            <article class="rounded-md border border-black bg-white p-5">
+                                <p class="text-sm font-bold text-accent"><?= $recensie['rating'] ?> sterren</p>
+                                <h3 class="mt-2 font-fraunces text-2xl font-semibold"><?= $recensie['naam'] ?></h3>
+                                <p class="mt-3 text-sm text-black"><?= $recensie['bericht'] ?></p>
+                            </article>
+                        <?php } ?>
+                    </div>
+                </div>
+            </section>
         <?php } ?>
     <?php } ?>
 </main>

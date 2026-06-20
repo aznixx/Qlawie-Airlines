@@ -58,7 +58,7 @@ include __DIR__ . "/../app/includes/navbar.php";
                 <article class="rounded-md border border-black bg-white p-5">
                     <p class="text-xs font-bold uppercase text-accent">Aankomst</p>
                     <h2 class="mt-2 font-fraunces text-3xl font-bold"><?= $vlucht['aankomst_luchthaven'] ?></h2>
-t                    <p class="mt-3 text-black"><?= $vlucht['aankomst_datum'] ?></p>
+                    <p class="mt-3 text-black"><?= $vlucht['aankomst_datum'] ?></p>
                 </article>
             </div>
         </section>

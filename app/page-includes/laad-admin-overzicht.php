@@ -20,6 +20,38 @@ ORDER BY reizen.id DESC");
 $stmt->execute();
 $reizen = $stmt->fetchAll();
 
+$stmt = $pdo->prepare("SELECT * FROM bestemmingen ORDER BY naam");
+$stmt->execute();
+$bestemmingen = $stmt->fetchAll();
+
+$stmt = $pdo->prepare("SELECT vluchten.*, bestemmingen.stad, bestemmingen.land
+FROM vluchten
+LEFT JOIN bestemmingen ON vluchten.bestemming_id = bestemmingen.id
+ORDER BY vluchten.id DESC");
+$stmt->execute();
+$vluchten = $stmt->fetchAll();
+
+$reis_bewerken = false;
+$vlucht_bewerken = false;
+
+if (isset($_GET['reis_id'])) {
+    $reis_id = $_GET['reis_id'];
+
+    $stmt = $pdo->prepare("SELECT * FROM reizen WHERE id = :id");
+    $stmt->bindParam(':id', $reis_id);
+    $stmt->execute();
+    $reis_bewerken = $stmt->fetch();
+}
+
+if (isset($_GET['vlucht_id'])) {
+    $vlucht_id = $_GET['vlucht_id'];
+
+    $stmt = $pdo->prepare("SELECT * FROM vluchten WHERE id = :id");
+    $stmt->bindParam(':id', $vlucht_id);
+    $stmt->execute();
+    $vlucht_bewerken = $stmt->fetch();
+}
+
 $stmt = $pdo->prepare("SELECT boekingen.*, gebruikers.voornaam, gebruikers.achternaam, reizen.titel, vluchten.vlucht_nummer, bestemmingen.stad
 FROM boekingen
 LEFT JOIN gebruikers ON boekingen.gebruiker_id = gebruikers.id

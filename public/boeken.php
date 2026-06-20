@@ -13,7 +13,7 @@ include __DIR__ . "/../app/includes/navbar.php";
             <p class="mt-5 rounded-md border border-black p-4 text-sm font-bold text-accent"><?= $foutmelding ?></p>
         <?php } ?>
 
-        <form class="mt-8 grid gap-4 rounded-md border border-black p-5 md:grid-cols-2" action="../app/page-includes/verwerk-boeking.php" method="post">
+        <form id="boekForm" class="mt-8 grid gap-4 rounded-md border border-black p-5 md:grid-cols-2" action="../app/page-includes/verwerk-boeking.php" method="post">
             <label class="grid gap-1">
                 <span class="text-sm font-semibold">Pakketreis</span>
                 <select class="h-12 rounded-md border border-black px-3 outline-none focus:border-accent" name="reis_id">

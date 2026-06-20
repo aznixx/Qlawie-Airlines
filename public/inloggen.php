@@ -2,6 +2,9 @@
 
 include __DIR__ . "/../app/includes/navbar.php";
 
+$foutmelding = $_SESSION['foutmelding'] ?? '';
+unset($_SESSION['foutmelding']);
+
 ?>
 
 <main class="px-6 py-12">
@@ -28,8 +31,12 @@ include __DIR__ . "/../app/includes/navbar.php";
             Nog geen account?
             <a class="font-bold text-accent hover:text-black" href="registreren.php">Maak een account aan</a>
         </p>
-        <?php if (isset($_SESSION['foutmelding'])) { ?>
-            <div><?= $_SESSION['foutmelding']; ?></div>
+        <p class="mt-2 text-sm text-black">
+            Wachtwoord kwijt?
+            <a class="font-bold text-accent hover:text-black" href="wachtwoord-vergeten.php">Reset je wachtwoord</a>
+        </p>
+        <?php if ($foutmelding !== '') { ?>
+            <p class="mt-5 rounded-md border border-red-600 px-4 py-3 text-sm font-semibold text-red-600"><?= $foutmelding ?></p>
         <?php } ?>
     </section>
 </main>

@@ -13,8 +13,11 @@
                 <div class="mt-3 grid gap-2">
                     <a class="hover:text-accent" href="<?php echo $basePath ?? ''; ?>index.php">Home</a>
                     <a class="hover:text-accent" href="<?php echo $basePath ?? ''; ?>bestemmingen.php">Bestemmingen</a>
+                    <a class="hover:text-accent" href="<?php echo $basePath ?? ''; ?>vluchten.php">Vluchten</a>
                     <a class="hover:text-accent" href="<?php echo $basePath ?? ''; ?>over-ons.php">Over ons</a>
                     <a class="hover:text-accent" href="<?php echo $basePath ?? ''; ?>contact.php">Contact</a>
+                    <a class="hover:text-accent" href="<?php echo $basePath ?? ''; ?>privacy.php">Privacy</a>
+                    <a class="hover:text-accent" href="<?php echo $basePath ?? ''; ?>voorwaarden.php">Voorwaarden</a>
                 </div>
             </div>
 
@@ -33,6 +36,7 @@
             <p>Reizen zoeken en boeken.</p>
         </div>
     </footer>
+    <script src="<?php echo $basePath ?? ''; ?>js/script.js"></script>
 </body>
 
 </html>
