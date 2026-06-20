@@ -1,4 +1,7 @@
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 $basePath = $basePath ?? '';
 
@@ -22,6 +25,7 @@ $basePath = $basePath ?? '';
             <div class="hidden absolute left-1/2 -translate-x-1/2 top-5 items-center gap-6 md:flex">
                 <a class="text-sm font-semibold text-black hover:text-accent" href="<?php echo $basePath; ?>index.php">Home</a>
                 <a class="text-sm font-semibold text-black hover:text-accent" href="<?php echo $basePath; ?>bestemmingen.php">Bestemmingen</a>
+                <a class="text-sm font-semibold text-black hover:text-accent" href="<?php echo $basePath; ?>vluchten.php">Vluchten</a>
                 <a class="text-sm font-semibold text-black hover:text-accent" href="<?php echo $basePath; ?>over-ons.php">Over ons</a>
                 <a class="text-sm font-semibold text-black hover:text-accent" href="<?php echo $basePath; ?>contact.php">Contact</a>
             </div>

@@ -1,7 +1,7 @@
 <?php
-include __DIR__ . "/../app/page-includes/verwerk-inloggen.php";
 
 include __DIR__ . "/../app/includes/navbar.php";
+
 ?>
 
 <main class="px-6 py-12">
@@ -10,7 +10,7 @@ include __DIR__ . "/../app/includes/navbar.php";
         <h1 class="font-fraunces text-4xl font-bold">Inloggen</h1>
         <p class="mt-3 text-black">Log in om je persoonlijke gegevens en geboekte reizen te bekijken.</p>
 
-        <form class="mt-8 grid gap-4 rounded-md border border-black p-5" action="inloggen.php" method="post">
+        <form class="mt-8 grid gap-4 rounded-md border border-black p-5" action="../app/page-includes/verwerk-inloggen.php" method="post">
             <label class="grid gap-1">
                 <span class="text-sm font-semibold">E-mail</span>
                 <input class="h-12 rounded-md border border-black px-3 outline-none focus:border-accent" type="email" name="email" autocomplete="email" required>
@@ -28,6 +28,9 @@ include __DIR__ . "/../app/includes/navbar.php";
             Nog geen account?
             <a class="font-bold text-accent hover:text-black" href="registreren.php">Maak een account aan</a>
         </p>
+        <?php if (isset($_SESSION['foutmelding'])) { ?>
+            <div><?= $_SESSION['foutmelding']; ?></div>
+        <?php } ?>
     </section>
 </main>
 

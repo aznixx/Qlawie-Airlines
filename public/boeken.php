@@ -1,37 +1,87 @@
-<?php 
-include __DIR__ . "/../app/page-includes/laad-boekformulier.php"; 
+<?php
+include __DIR__ . "/../app/page-includes/laad-boekformulier.php";
 include __DIR__ . "/../app/includes/navbar.php";
 ?>
-
 
 <main class="px-6 py-12">
     <section class="mx-auto max-w-4xl">
         <p class="text-xs font-bold uppercase text-accent">Boeken</p>
-        <h1 class="font-fraunces text-4xl font-bold">Reis boeken</h1>
-        <p class="mt-3 text-black">Vul je gegevens in om een reisaanvraag te maken.</p>
+        <h1 class="font-fraunces text-4xl font-bold">Boeking maken</h1>
+        <p class="mt-3 text-black">Kies een reis of losse vlucht en vul je gegevens in.</p>
 
-        <form class="mt-8 grid gap-4 rounded-md border border-black p-5 md:grid-cols-2" action="contact.php" method="get">
+        <?php if ($foutmelding !== '') { ?>
+            <p class="mt-5 rounded-md border border-black p-4 text-sm font-bold text-accent"><?= $foutmelding ?></p>
+        <?php } ?>
+
+        <form class="mt-8 grid gap-4 rounded-md border border-black p-5 md:grid-cols-2" action="../app/page-includes/verwerk-boeking.php" method="post">
+            <label class="grid gap-1">
+                <span class="text-sm font-semibold">Pakketreis</span>
+                <select class="h-12 rounded-md border border-black px-3 outline-none focus:border-accent" name="reis_id">
+                    <option value="">Geen pakketreis</option>
+                    <?php foreach ($reizen as $reis) { ?>
+                        <option value="<?= $reis['id'] ?>" <?= $reis_id == $reis['id'] ? 'selected' : '' ?>><?= $reis['titel'] ?></option>
+                    <?php } ?>
+                </select>
+            </label>
+
+            <label class="grid gap-1">
+                <span class="text-sm font-semibold">Losse vlucht</span>
+                <select class="h-12 rounded-md border border-black px-3 outline-none focus:border-accent" name="vlucht_id">
+                    <option value="">Geen losse vlucht</option>
+                    <?php foreach ($vluchten as $vlucht) { ?>
+                        <option value="<?= $vlucht['id'] ?>" <?= $vlucht_id == $vlucht['id'] ? 'selected' : '' ?>><?= $vlucht['vlucht_nummer'] ?> - <?= $vlucht['stad'] ?></option>
+                    <?php } ?>
+                </select>
+            </label>
+
             <label class="grid gap-1">
                 <span class="text-sm font-semibold">Naam</span>
-                <input class="h-12 rounded-md border border-black px-3 outline-none focus:border-accent" type="text" name="naam" required>
+                <input class="h-12 rounded-md border border-black px-3 outline-none focus:border-accent" type="text" name="naam" value="<?= $gebruiker ? $gebruiker['voornaam'] . ' ' . $gebruiker['achternaam'] : '' ?>" required>
             </label>
+
             <label class="grid gap-1">
                 <span class="text-sm font-semibold">E-mail</span>
-                <input class="h-12 rounded-md border border-black px-3 outline-none focus:border-accent" type="email" name="email" required>
+                <input class="h-12 rounded-md border border-black px-3 outline-none focus:border-accent" type="email" name="email" value="<?= $gebruiker ? $gebruiker['email'] : '' ?>" required>
             </label>
+
+            <label class="grid gap-1">
+                <span class="text-sm font-semibold">Telefoon</span>
+                <input class="h-12 rounded-md border border-black px-3 outline-none focus:border-accent" type="text" name="telefoon" value="<?= $gebruiker ? $gebruiker['telefoon'] : '' ?>">
+            </label>
+
             <label class="grid gap-1">
                 <span class="text-sm font-semibold">Aantal reizigers</span>
                 <select class="h-12 rounded-md border border-black px-3 outline-none focus:border-accent" name="reizigers">
-                    <option>1 reiziger</option>
-                    <option>2 reizigers</option>
-                    <option>3 reizigers</option>
-                    <option>4 reizigers</option>
+                    <option value="1">1 reiziger</option>
+                    <option value="2">2 reizigers</option>
+                    <option value="3">3 reizigers</option>
+                    <option value="4">4 reizigers</option>
                 </select>
             </label>
+
             <label class="grid gap-1">
-                <span class="text-sm font-semibold">Datum</span>
-                <input class="h-12 rounded-md border border-black px-3 outline-none focus:border-accent" type="date" name="datum" required>
+                <span class="text-sm font-semibold">Reisklasse</span>
+                <select class="h-12 rounded-md border border-black px-3 outline-none focus:border-accent" name="reisklasse">
+                    <option>Economy</option>
+                    <option>Premium Economy</option>
+                    <option>Business</option>
+                </select>
             </label>
+
+            <label class="grid gap-1">
+                <span class="text-sm font-semibold">Bagage</span>
+                <select class="h-12 rounded-md border border-black px-3 outline-none focus:border-accent" name="bagage">
+                    <option>Handbagage</option>
+                    <option>Ruimbagage</option>
+                    <option>Extra bagage</option>
+                </select>
+            </label>
+
+            <label class="grid gap-1 md:col-span-2">
+                <span class="text-sm font-semibold">Opmerkingen</span>
+                <textarea class="min-h-28 rounded-md border border-black p-3 outline-none focus:border-accent" name="opmerkingen"></textarea>
+            </label>
+
             <button class="h-12 rounded-md bg-accent px-5 text-sm font-bold text-white hover:bg-black md:col-span-2" type="submit">Boeking afronden</button>
         </form>
     </section>

@@ -29,7 +29,7 @@
         </div>
 
         <div class="mx-auto mt-8 flex max-w-7xl flex-col gap-2 border-t border-black pt-5 text-xs text-black md:flex-row md:items-center md:justify-between">
-            <p>&copy; <?php echo date('Y'); ?> Qlawie Airlines.</p>
+            <p>&copy; Qlawie Airlines.</p>
             <p>Reizen zoeken en boeken.</p>
         </div>
     </footer>

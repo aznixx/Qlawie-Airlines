@@ -6,8 +6,15 @@ $zoek = trim($_GET["zoek"] ?? "");
 $resultaten = [];
 
 if ($zoek) {
-    $stmt = $pdo->prepare("SELECT * FROM bestemmingen WHERE stad LIKE '%$zoek%'");
+    $zoekterm = "%" . $zoek . "%";
+
+    $stmt = $pdo->prepare("SELECT * FROM bestemmingen WHERE stad LIKE :zoek_stad OR naam LIKE :zoek_naam");
+    $stmt->bindParam(':zoek_stad', $zoekterm);
+    $stmt->bindParam(':zoek_naam', $zoekterm);
+    $stmt->execute();
+    $resultaten = $stmt->fetchAll();
+} else {
+    $stmt = $pdo->prepare("SELECT * FROM bestemmingen");
     $stmt->execute();
     $resultaten = $stmt->fetchAll();
 }
-

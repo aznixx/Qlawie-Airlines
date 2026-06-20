@@ -1,6 +1,9 @@
 <?php
-include __DIR__ . "/../app/page-includes/verwerk-registratie.php";
 include __DIR__ . "/../app/includes/navbar.php";
+
+$foutmelding = $_SESSION['foutmelding'] ?? '';
+unset($_SESSION['foutmelding']);
+
 ?>
 
 <main class="px-6 py-12">
@@ -9,31 +12,31 @@ include __DIR__ . "/../app/includes/navbar.php";
         <h1 class="font-fraunces text-4xl font-bold">Account aanmaken</h1>
         <p class="mt-3 text-black">Maak een account aan om je gegevens en reizen later makkelijk te beheren.</p>
 
-        <?php if ($foutmelding !== ""): ?>
+        <?php if (($foutmelding ?? '') !== '') {?>
             <p class="mt-5 rounded-md border border-red-600 px-4 py-3 text-sm font-semibold text-red-600">
-                <?= htmlspecialchars($foutmelding) ?>
+                <?= $foutmelding ?>
             </p>
-        <?php endif; ?>
+        <?php } ?>
 
-        <form class="mt-8 grid gap-4 rounded-md border border-black p-5 md:grid-cols-2" action="registreren.php" method="post">
+        <form class="mt-8 grid gap-4 rounded-md border border-black p-5 md:grid-cols-2" action="../app/page-includes/verwerk-registratie.php" method="post">
             <label class="grid gap-1">
                 <span class="text-sm font-semibold">Voornaam</span>
-                <input class="h-12 rounded-md border border-black px-3 outline-none focus:border-accent" type="text" name="voornaam" autocomplete="given-name" value="<?= htmlspecialchars($voornaam) ?>" required>
+                <input class="h-12 rounded-md border border-black px-3 outline-none focus:border-accent" type="text" name="voornaam" autocomplete="given-name" placeholder="Voornaam.." required>
             </label>
 
             <label class="grid gap-1">
                 <span class="text-sm font-semibold">Achternaam</span>
-                <input class="h-12 rounded-md border border-black px-3 outline-none focus:border-accent" type="text" name="achternaam" autocomplete="family-name" value="<?= htmlspecialchars($achternaam) ?>" required>
+                <input class="h-12 rounded-md border border-black px-3 outline-none focus:border-accent" type="text" name="achternaam" autocomplete="family-name" placeholder="Achternaam.." required>
             </label>
 
             <label class="grid gap-1">
                 <span class="text-sm font-semibold">E-mail</span>
-                <input class="h-12 rounded-md border border-black px-3 outline-none focus:border-accent" type="email" name="email" autocomplete="email" value="<?= htmlspecialchars($email) ?>" required>
+                <input class="h-12 rounded-md border border-black px-3 outline-none focus:border-accent" type="email" name="email" autocomplete="email" placeholder="example@mail.com.." required>
             </label>
 
             <label class="grid gap-1">
                 <span class="text-sm font-semibold">Telefoon</span>
-                <input class="h-12 rounded-md border border-black px-3 outline-none focus:border-accent" type="tel" name="telefoon" autocomplete="tel" value="<?= htmlspecialchars($telefoon) ?>">
+                <input class="h-12 rounded-md border border-black px-3 outline-none focus:border-accent" type="tel" name="telefoon" autocomplete="tel" placeholder="0612345678..">
             </label>
 
             <label class="grid gap-1">

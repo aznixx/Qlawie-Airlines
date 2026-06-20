@@ -32,7 +32,7 @@ include __DIR__ . "/../app/includes/navbar.php";
                                 <p class="text-sm font-bold text-accent"><?= $vlucht['vlucht_nummer'] ?></p>
                                 <h2 class="font-fraunces text-2xl font-semibold"><?= $vlucht['stad'] ?? $vlucht['naam'] ?></h2>
                                 <p class="mt-2 text-sm text-black"><?= $vlucht['vertrek_luchthaven'] ?> naar <?= $vlucht['aankomst_luchthaven'] ?></p>
-                                <p class="mt-2 text-sm text-black"><?= date("d-m-Y H:i", strtotime($vlucht['vertrek_datum'])) ?></p>
+                                <p class="mt-2 text-sm text-black"><?= $vlucht['vertrek_datum'] ?></p>
                                 <div class="mt-4 flex items-center justify-between gap-3">
                                     <p class="font-bold text-accent">&euro;<?= $vlucht['prijs'] ?></p>
                                     <span class="inline-flex rounded-md bg-accent px-4 py-2 text-sm font-bold text-white transition group-hover:bg-black">Bekijk vlucht</span>

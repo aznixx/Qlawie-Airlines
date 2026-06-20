@@ -122,14 +122,14 @@ include __DIR__ . "/../app/includes/navbar.php";
                     <a
                         class="group block overflow-hidden rounded-md border border-black bg-white transition hover:-translate-y-1 hover:border-accent hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2"
                         href="reis-info.php?slug=<?= rawurlencode($bestemming['slug']) ?>"
-                        aria-label="Bekijk reisinformatie voor <?= htmlspecialchars($bestemming['naam']) ?>">
-                        <img class="h-40 w-full object-cover transition duration-300 group-hover:scale-105" src="<?= htmlspecialchars($bestemming['afbeelding']) ?>" alt="<?= htmlspecialchars($bestemming['naam']) ?>">
+                        aria-label="Bekijk reisinformatie voor <?= $bestemming['naam'] ?>">
+                        <img class="h-40 w-full object-cover transition duration-300 group-hover:scale-105" src="<?= $bestemming['afbeelding'] ?>" alt="<?= $bestemming['naam'] ?>">
                         <div class="p-5">
-                            <p class="text-sm font-bold text-accent"><?= htmlspecialchars($bestemming['aantal_dagen']) ?> dagen</p>
-                            <h2 class="font-fraunces text-2xl font-semibold"><?= htmlspecialchars($bestemming["naam"]) ?></h2>
-                            <p class="mt-2 text-sm text-black"><?= htmlspecialchars($bestemming['korte_beschrijving']) ?></p>
+                            <p class="text-sm font-bold text-accent"><?= $bestemming['aantal_dagen'] ?> dagen</p>
+                            <h2 class="font-fraunces text-2xl font-semibold"><?= $bestemming["naam"] ?></h2>
+                            <p class="mt-2 text-sm text-black"><?= $bestemming['korte_beschrijving'] ?></p>
                             <div class="mt-4 flex items-center justify-between gap-3">
-                                <p class="font-bold text-accent">&euro;<?= htmlspecialchars($bestemming['prijs_reis']) ?></p>
+                                <p class="font-bold text-accent">&euro;<?= $bestemming['prijs_reis'] ?></p>
                                 <span class="inline-flex rounded-md bg-accent px-4 py-2 text-sm font-bold text-white transition group-hover:bg-black">Bekijk reis</span>
                             </div>
                         </div>
@@ -146,20 +146,20 @@ include __DIR__ . "/../app/includes/navbar.php";
     ?>
         <section class="bg-white px-6 py-12">
             <div class="mx-auto grid max-w-6xl overflow-hidden rounded-md border border-black md:grid-cols-2">
-                <img class="h-72 w-full object-cover md:h-full" src="<?= htmlspecialchars($uitgelicht['afbeelding']) ?>" alt="<?= htmlspecialchars($uitgelicht['naam']) ?>">
+                <img class="h-72 w-full object-cover md:h-full" src="<?= $uitgelicht['afbeelding'] ?>" alt="<?= $uitgelicht['naam'] ?>">
                 <div class="p-6 md:p-8">
                     <p class="text-xs font-bold uppercase text-accent">uitgelichte reis</p>
-                    <h2 class="mt-2 font-fraunces text-4xl font-bold"><?= htmlspecialchars($uitgelicht["naam"]) ?></h2>
-                    <p class="mt-4 text-sm text-black"><?= htmlspecialchars($uitgelicht['korte_beschrijving']) ?></p>
+                    <h2 class="mt-2 font-fraunces text-4xl font-bold"><?= $uitgelicht["naam"] ?></h2>
+                    <p class="mt-4 text-sm text-black"><?= $uitgelicht['korte_beschrijving'] ?></p>
 
                     <div class="mt-6 grid gap-3 sm:grid-cols-3">
                         <div class="rounded-md border border-black p-4">
                             <p class="text-xs font-bold uppercase text-accent">duur</p>
-                            <p class="mt-2 font-fraunces text-2xl font-semibold"><?= htmlspecialchars($uitgelicht['aantal_dagen']) ?> dagen</p>
+                            <p class="mt-2 font-fraunces text-2xl font-semibold"><?= $uitgelicht['aantal_dagen'] ?> dagen</p>
                         </div>
                         <div class="rounded-md border border-black p-4">
                             <p class="text-xs font-bold uppercase text-accent">prijs</p>
-                            <p class="mt-2 font-fraunces text-2xl font-semibold">&euro;<?= htmlspecialchars($uitgelicht['prijs_reis']) ?></p>
+                            <p class="mt-2 font-fraunces text-2xl font-semibold">&euro;<?= $uitgelicht['prijs_reis'] ?></p>
                         </div>
                         <div class="rounded-md border border-black p-4">
                             <p class="text-xs font-bold uppercase text-accent">type</p>
