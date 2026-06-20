@@ -25,16 +25,16 @@ include __DIR__ . "/../app/includes/navbar.php";
                     <?php foreach ($vluchten as $vlucht) { ?>
                         <a
                             class="group block overflow-hidden rounded-md border border-black bg-white transition hover:-translate-y-1 hover:border-accent hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2"
-                            href="vlucht-info.php?id=<?= htmlspecialchars($vlucht['id']) ?>"
-                            aria-label="Bekijk vlucht naar <?= htmlspecialchars($vlucht['stad'] ?? $vlucht['naam']) ?>">
-                            <img class="h-40 w-full object-cover transition duration-300 group-hover:scale-105" src="<?= htmlspecialchars($vlucht['afbeelding'] ?? 'assets/landingpage.jpg') ?>" alt="<?= htmlspecialchars($vlucht['stad'] ?? $vlucht['naam']) ?>">
+                            href="vlucht-info.php?id=<?= $vlucht['id'] ?>"
+                            aria-label="Bekijk vlucht naar <?= $vlucht['stad'] ?? $vlucht['naam'] ?>">
+                            <img class="h-40 w-full object-cover transition duration-300 group-hover:scale-105" src="<?= $vlucht['afbeelding'] ?? 'assets/landingpage.jpg' ?>" alt="<?= $vlucht['stad'] ?? $vlucht['naam'] ?>">
                             <div class="p-5">
-                                <p class="text-sm font-bold text-accent"><?= htmlspecialchars($vlucht['vlucht_nummer']) ?></p>
-                                <h2 class="font-fraunces text-2xl font-semibold"><?= htmlspecialchars($vlucht['stad'] ?? $vlucht['naam']) ?></h2>
-                                <p class="mt-2 text-sm text-black"><?= htmlspecialchars($vlucht['vertrek_luchthaven']) ?> naar <?= htmlspecialchars($vlucht['aankomst_luchthaven']) ?></p>
+                                <p class="text-sm font-bold text-accent"><?= $vlucht['vlucht_nummer'] ?></p>
+                                <h2 class="font-fraunces text-2xl font-semibold"><?= $vlucht['stad'] ?? $vlucht['naam'] ?></h2>
+                                <p class="mt-2 text-sm text-black"><?= $vlucht['vertrek_luchthaven'] ?> naar <?= $vlucht['aankomst_luchthaven'] ?></p>
                                 <p class="mt-2 text-sm text-black"><?= date("d-m-Y H:i", strtotime($vlucht['vertrek_datum'])) ?></p>
                                 <div class="mt-4 flex items-center justify-between gap-3">
-                                    <p class="font-bold text-accent">&euro;<?= htmlspecialchars($vlucht['prijs']) ?></p>
+                                    <p class="font-bold text-accent">&euro;<?= $vlucht['prijs'] ?></p>
                                     <span class="inline-flex rounded-md bg-accent px-4 py-2 text-sm font-bold text-white transition group-hover:bg-black">Bekijk vlucht</span>
                                 </div>
                             </div>

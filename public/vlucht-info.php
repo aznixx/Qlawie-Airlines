@@ -15,14 +15,14 @@ include __DIR__ . "/../app/includes/navbar.php";
         </section>
     <?php } else { ?>
         <section class="relative overflow-hidden px-6 py-16 text-white">
-            <img class="absolute inset-0 h-full w-full object-cover" src="<?= htmlspecialchars($vlucht['afbeelding'] ?? 'assets/landingpage.jpg') ?>" alt="<?= htmlspecialchars($vlucht['stad'] ?? $vlucht['naam']) ?>">
+            <img class="absolute inset-0 h-full w-full object-cover" src="<?= $vlucht['afbeelding'] ?? 'assets/landingpage.jpg' ?>" alt="<?= $vlucht['stad'] ?? $vlucht['naam'] ?>">
             <div class="absolute inset-0 bg-black/55"></div>
 
             <div class="relative mx-auto grid max-w-6xl gap-8 md:grid-cols-2 md:items-end">
                 <div>
                     <a class="inline-flex rounded-md border border-white px-4 py-2 text-xs font-bold uppercase text-white hover:border-accent hover:text-accent" href="vluchten.php">Terug naar vluchten</a>
                     <p class="mt-8 text-xs font-bold uppercase text-accent">Qlawie vlucht</p>
-                    <h1 class="mt-3 font-fraunces text-5xl font-bold">Vlucht naar <?= htmlspecialchars($vlucht['stad'] ?? $vlucht['naam']) ?></h1>
+                    <h1 class="mt-3 font-fraunces text-5xl font-bold">Vlucht naar <?= $vlucht['stad'] ?? $vlucht['naam'] ?></h1>
                     <p class="mt-4 max-w-2xl text-white">Een losse vlucht met Qlawie Airlines. Geen hotel, geen pakket, gewoon je vlucht boeken.</p>
                 </div>
 
@@ -31,18 +31,18 @@ include __DIR__ . "/../app/includes/navbar.php";
                     <div class="mt-4 grid gap-3">
                         <div class="rounded-md border border-black p-4">
                             <p class="text-xs font-bold uppercase text-accent">Vlucht nummer</p>
-                            <p class="mt-2 font-fraunces text-2xl font-semibold"><?= htmlspecialchars($vlucht['vlucht_nummer']) ?></p>
+                            <p class="mt-2 font-fraunces text-2xl font-semibold"><?= $vlucht['vlucht_nummer'] ?></p>
                         </div>
                         <div class="rounded-md border border-black p-4">
                             <p class="text-xs font-bold uppercase text-accent">Prijs</p>
-                            <p class="mt-2 font-fraunces text-2xl font-semibold">&euro;<?= htmlspecialchars($vlucht['prijs']) ?></p>
+                            <p class="mt-2 font-fraunces text-2xl font-semibold">&euro;<?= $vlucht['prijs'] ?></p>
                         </div>
                         <div class="rounded-md border border-black p-4">
                             <p class="text-xs font-bold uppercase text-accent">Stoelen</p>
-                            <p class="mt-2 font-fraunces text-2xl font-semibold"><?= htmlspecialchars($vlucht['stoelen']) ?> beschikbaar</p>
+                            <p class="mt-2 font-fraunces text-2xl font-semibold"><?= $vlucht['stoelen'] ?> beschikbaar</p>
                         </div>
                     </div>
-                    <a class="mt-5 inline-flex w-full justify-center rounded-md bg-accent px-5 py-3 text-sm font-bold text-white hover:bg-black" href="boeken.php?vlucht_id=<?= htmlspecialchars($vlucht['id']) ?>">Boek deze vlucht</a>
+                    <a class="mt-5 inline-flex w-full justify-center rounded-md bg-accent px-5 py-3 text-sm font-bold text-white hover:bg-black" href="boeken.php?vlucht_id=<?= $vlucht['id'] ?>">Boek deze vlucht</a>
                 </div>
             </div>
         </section>
@@ -51,13 +51,13 @@ include __DIR__ . "/../app/includes/navbar.php";
             <div class="mx-auto grid max-w-6xl gap-5 md:grid-cols-2">
                 <article class="rounded-md border border-black bg-white p-5">
                     <p class="text-xs font-bold uppercase text-accent">Vertrek</p>
-                    <h2 class="mt-2 font-fraunces text-3xl font-bold"><?= htmlspecialchars($vlucht['vertrek_luchthaven']) ?></h2>
+                    <h2 class="mt-2 font-fraunces text-3xl font-bold"><?= $vlucht['vertrek_luchthaven'] ?></h2>
                     <p class="mt-3 text-black"><?= date("d-m-Y H:i", strtotime($vlucht['vertrek_datum'])) ?></p>
                 </article>
 
                 <article class="rounded-md border border-black bg-white p-5">
                     <p class="text-xs font-bold uppercase text-accent">Aankomst</p>
-                    <h2 class="mt-2 font-fraunces text-3xl font-bold"><?= htmlspecialchars($vlucht['aankomst_luchthaven']) ?></h2>
+                    <h2 class="mt-2 font-fraunces text-3xl font-bold"><?= $vlucht['aankomst_luchthaven'] ?></h2>
                     <p class="mt-3 text-black"><?= date("d-m-Y H:i", strtotime($vlucht['aankomst_datum'])) ?></p>
                 </article>
             </div>
