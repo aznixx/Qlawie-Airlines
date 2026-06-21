@@ -18,7 +18,7 @@ unset($_SESSION['foutmelding']);
             </p>
         <?php } ?>
 
-        <form class="wachtwoordForm mt-8 grid gap-4 rounded-md border border-black p-5 md:grid-cols-2" action="../app/page-includes/verwerk-registratie.php" method="post">
+        <form class="wachtwoordForm mt-8 grid gap-4 rounded-md border border-black p-5 md:grid-cols-2" action="../app/page-includes/verwerken/verwerk-registratie.php" method="post">
             <label class="grid gap-1">
                 <span class="text-sm font-semibold">Voornaam</span>
                 <input class="h-12 rounded-md border border-black px-3 outline-none focus:border-accent" type="text" name="voornaam" autocomplete="given-name" placeholder="Voornaam.." required>

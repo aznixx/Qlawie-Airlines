@@ -1,5 +1,5 @@
 <?php
-include __DIR__ . "/../app/page-includes/laad-wachtwoord-vergeten.php";
+include __DIR__ . "/../app/page-includes/laden/laad-wachtwoord-vergeten.php";
 include __DIR__ . "/../app/includes/navbar.php";
 ?>
 
@@ -17,7 +17,7 @@ include __DIR__ . "/../app/includes/navbar.php";
             <a class="mt-5 inline-flex rounded-md bg-accent px-5 py-3 text-sm font-bold text-white hover:bg-black" href="<?= $reset_link ?>">Reset wachtwoord</a>
         <?php } ?>
 
-        <form class="mt-8 grid gap-4 rounded-md border border-black p-5" action="../app/page-includes/verwerk-wachtwoord-vergeten.php" method="post">
+        <form class="mt-8 grid gap-4 rounded-md border border-black p-5" action="../app/page-includes/verwerken/verwerk-wachtwoord-vergeten.php" method="post">
             <label class="grid gap-1">
                 <span class="text-sm font-semibold">E-mail</span>
                 <input class="h-12 rounded-md border border-black px-3 outline-none focus:border-accent" type="email" name="email" required>

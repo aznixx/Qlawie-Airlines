@@ -1,9 +1,5 @@
 <?php
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-
-include __DIR__ . "/../app/page-includes/laad-wachtwoord-resetten.php";
+include __DIR__ . "/../app/page-includes/laden/laad-wachtwoord-resetten.php";
 include __DIR__ . "/../app/includes/navbar.php";
 ?>
 
@@ -17,7 +13,7 @@ include __DIR__ . "/../app/includes/navbar.php";
             <p class="mt-5 rounded-md border border-black p-4 text-sm font-bold text-accent"><?= $melding ?></p>
         <?php } ?>
 
-        <form class="wachtwoordForm mt-8 grid gap-4 rounded-md border border-black p-5" action="../app/page-includes/verwerk-wachtwoord-resetten.php" method="post">
+        <form class="wachtwoordForm mt-8 grid gap-4 rounded-md border border-black p-5" action="../app/page-includes/verwerken/verwerk-wachtwoord-resetten.php" method="post">
             <input type="hidden" name="token" value="<?= $token ?>">
 
             <label class="grid gap-1">

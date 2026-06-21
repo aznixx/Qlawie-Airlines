@@ -1,5 +1,5 @@
 <?php
-include __DIR__ . "/../app/page-includes/haal-vluchtinformatie-op.php";
+include __DIR__ . "/../app/page-includes/ophalen/haal-vluchtinformatie-op.php";
 include __DIR__ . "/../app/includes/navbar.php";
 ?>
 
@@ -15,14 +15,14 @@ include __DIR__ . "/../app/includes/navbar.php";
         </section>
     <?php } else { ?>
         <section class="relative overflow-hidden px-6 py-16 text-white">
-            <img class="absolute inset-0 h-full w-full object-cover" src="<?= $vlucht['afbeelding'] ?? 'assets/landingpage.jpg' ?>" alt="<?= $vlucht['stad'] ?? $vlucht['naam'] ?>">
+            <img class="absolute inset-0 h-full w-full object-cover" src="assets/landingpage.jpg" alt="<?= $vlucht['aankomst_luchthaven'] ?>">
             <div class="absolute inset-0 bg-black/55"></div>
 
             <div class="relative mx-auto grid max-w-6xl gap-8 md:grid-cols-2 md:items-end">
                 <div>
                     <a class="inline-flex rounded-md border border-white px-4 py-2 text-xs font-bold uppercase text-white hover:border-accent hover:text-accent" href="vluchten.php">Terug naar vluchten</a>
                     <p class="mt-8 text-xs font-bold uppercase text-accent">Qlawie vlucht</p>
-                    <h1 class="mt-3 font-fraunces text-5xl font-bold">Vlucht naar <?= $vlucht['stad'] ?? $vlucht['naam'] ?></h1>
+                    <h1 class="mt-3 font-fraunces text-5xl font-bold">Vlucht naar <?= $vlucht['aankomst_luchthaven'] ?></h1>
                     <p class="mt-4 max-w-2xl text-white">Een losse vlucht met Qlawie Airlines. Geen hotel, geen pakket, gewoon je vlucht boeken.</p>
                 </div>
 

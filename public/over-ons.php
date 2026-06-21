@@ -1,5 +1,4 @@
 <?php 
-include __DIR__ . "/../app/page-includes/laad-over-ons-pagina.php"; 
 include __DIR__ . "/../app/includes/navbar.php";
 ?>
 
@@ -9,7 +8,7 @@ include __DIR__ . "/../app/includes/navbar.php";
         <h1 class="font-fraunces text-4xl font-bold">Wie zijn wij?</h1>
         <p class="mt-4 max-w-3xl text-black">
             Qlawie Airlines is een klein reisbureau dat reizen simpel en duidelijk wil maken.
-            We helpen klanten met bestemmingen, vluchten, hotels en vragen voor vertrek.
+            We helpen klanten met reizen, vluchten en vragen voor vertrek.
         </p>
 
         <div class="mt-8 grid gap-4 md:grid-cols-3">

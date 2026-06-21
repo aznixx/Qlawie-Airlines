@@ -1,5 +1,5 @@
 <?php
-include __DIR__ . "/../app/page-includes/haal-vluchten-op.php";
+include __DIR__ . "/../app/page-includes/ophalen/haal-vluchten-op.php";
 include __DIR__ . "/../app/includes/navbar.php";
 ?>
 
@@ -8,7 +8,7 @@ include __DIR__ . "/../app/includes/navbar.php";
         <div class="mx-auto max-w-6xl">
             <p class="text-xs font-bold uppercase text-accent">Vluchten</p>
             <h1 class="font-fraunces text-4xl font-bold">Losse vluchten</h1>
-            <p class="mt-3 max-w-2xl text-black">Boek alleen een vlucht naar je bestemming, zonder hotel of extra pakket.</p>
+            <p class="mt-3 max-w-2xl text-black">Boek alleen een vlucht, zonder hotel of extra pakket.</p>
         </div>
     </section>
 
@@ -18,7 +18,7 @@ include __DIR__ . "/../app/includes/navbar.php";
                 <div class="rounded-md border border-black bg-white p-5">
                     <p class="font-bold">Er zijn nog geen vluchten beschikbaar.</p>
                     <p class="mt-2 text-sm text-black">Kom later terug of bekijk onze reizen.</p>
-                    <a class="mt-4 inline-flex rounded-md bg-accent px-4 py-2 text-sm font-bold text-white hover:bg-black" href="bestemmingen.php">Bekijk reizen</a>
+                    <a class="mt-4 inline-flex rounded-md bg-accent px-4 py-2 text-sm font-bold text-white hover:bg-black" href="reizen.php">Bekijk reizen</a>
                 </div>
             <?php } else { ?>
                 <div class="grid gap-5 md:grid-cols-3">
@@ -26,11 +26,11 @@ include __DIR__ . "/../app/includes/navbar.php";
                         <a
                             class="group block overflow-hidden rounded-md border border-black bg-white transition hover:-translate-y-1 hover:border-accent hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2"
                             href="vlucht-info.php?id=<?= $vlucht['id'] ?>"
-                            aria-label="Bekijk vlucht naar <?= $vlucht['stad'] ?? $vlucht['naam'] ?>">
-                            <img class="h-40 w-full object-cover transition duration-300 group-hover:scale-105" src="<?= $vlucht['afbeelding'] ?? 'assets/landingpage.jpg' ?>" alt="<?= $vlucht['stad'] ?? $vlucht['naam'] ?>">
+                            aria-label="Bekijk vlucht naar <?= $vlucht['aankomst_luchthaven'] ?>">
+                            <img class="h-40 w-full object-cover transition duration-300 group-hover:scale-105" src="<?=  $vlucht['afbeelding'] ?>" alt="<?= $vlucht['aankomst_luchthaven'] ?>">
                             <div class="p-5">
                                 <p class="text-sm font-bold text-accent"><?= $vlucht['vlucht_nummer'] ?></p>
-                                <h2 class="font-fraunces text-2xl font-semibold"><?= $vlucht['stad'] ?? $vlucht['naam'] ?></h2>
+                                <h2 class="font-fraunces text-2xl font-semibold"><?= $vlucht['aankomst_luchthaven'] ?></h2>
                                 <p class="mt-2 text-sm text-black"><?= $vlucht['vertrek_luchthaven'] ?> naar <?= $vlucht['aankomst_luchthaven'] ?></p>
                                 <p class="mt-2 text-sm text-black"><?= $vlucht['vertrek_datum'] ?></p>
                                 <div class="mt-4 flex items-center justify-between gap-3">

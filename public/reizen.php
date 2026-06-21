@@ -1,29 +1,26 @@
-<?php
-include __DIR__ . "/../app/page-includes/ophalen/haal-zoekresultaten-op.php";
+<?php 
+include __DIR__ . "/../app/page-includes/ophalen/haal-reizen-op.php"; 
 include __DIR__ . "/../app/includes/navbar.php";
 ?>
 
 <main>
     <section class="bg-white px-6 py-10">
         <div class="mx-auto max-w-6xl">
-            <p class="text-xs font-bold uppercase text-accent">Resultaten</p>
-            <h1 class="font-fraunces text-4xl font-bold">Gevonden reizen</h1>
-            <p class="mt-3 text-black">Zoekterm: <?php echo $zoek ?: "alles"; ?></p>
+            <p class="text-xs font-bold uppercase text-accent">Reizen</p>
+            <h1 class="font-fraunces text-4xl font-bold">Populaire reizen</h1>
+            <p class="mt-3 max-w-2xl text-black">Bekijk locaties en kies een reis die bij je past.</p>
+
+            <form class="mt-6 grid gap-3 rounded-md bg-white p-4 md:grid-cols-4" action="resultaten.php" method="get">
+                <input class="h-12 rounded-md border border-black px-3 text-sm outline-none focus:border-accent md:col-span-3" type="text" name="zoek" placeholder="Zoek op reis">
+                <button class="h-12 rounded-md bg-accent px-5 text-sm font-bold text-white hover:bg-black" type="submit">Zoeken</button>
+            </form>
         </div>
     </section>
 
-    <section class="px-6 py-12">
+    <section class="px-6 py-10">
         <div class="mx-auto max-w-6xl">
-            <?php if (empty($resultaten)) { ?>
-                <div class="rounded-md border border-black bg-white p-5">
-                    <p class="font-bold">Geen reizen gevonden.</p>
-                    <p class="mt-2 text-sm">Probeer een andere reis.</p>
-                    <a class="mt-4 inline-flex rounded-md bg-accent px-4 py-2 text-sm font-bold text-white hover:bg-black" href="reizen.php">Terug naar reizen</a>
-                </div>
-            <?php } ?>
-
-            <div class="mt-6 grid gap-5 md:grid-cols-3">
-                <?php foreach ($resultaten as $reis) { ?>
+            <div class="mt-8 grid gap-5 md:grid-cols-3">
+                <?php foreach ($reizen as $reis) { ?>
                     <a
                         class="group block overflow-hidden rounded-md border border-black bg-white transition hover:-translate-y-1 hover:border-accent hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2"
                         href="reis-info.php?id=<?= $reis['id'] ?>"

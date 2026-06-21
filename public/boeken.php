@@ -1,5 +1,5 @@
 <?php
-include __DIR__ . "/../app/page-includes/laad-boekformulier.php";
+include __DIR__ . "/../app/page-includes/laden/laad-boekformulier.php";
 include __DIR__ . "/../app/includes/navbar.php";
 ?>
 
@@ -13,7 +13,7 @@ include __DIR__ . "/../app/includes/navbar.php";
             <p class="mt-5 rounded-md border border-black p-4 text-sm font-bold text-accent"><?= $foutmelding ?></p>
         <?php } ?>
 
-        <form id="boekForm" class="mt-8 grid gap-4 rounded-md border border-black p-5 md:grid-cols-2" action="../app/page-includes/verwerk-boeking.php" method="post">
+        <form id="boekForm" class="mt-8 grid gap-4 rounded-md border border-black p-5 md:grid-cols-2" action="../app/page-includes/verwerken/verwerk-boeking.php" method="post">
             <label class="grid gap-1">
                 <span class="text-sm font-semibold">Pakketreis</span>
                 <select class="h-12 rounded-md border border-black px-3 outline-none focus:border-accent" name="reis_id">
@@ -29,24 +29,24 @@ include __DIR__ . "/../app/includes/navbar.php";
                 <select class="h-12 rounded-md border border-black px-3 outline-none focus:border-accent" name="vlucht_id">
                     <option value="">Geen losse vlucht</option>
                     <?php foreach ($vluchten as $vlucht) { ?>
-                        <option value="<?= $vlucht['id'] ?>" <?= $vlucht_id == $vlucht['id'] ? 'selected' : '' ?>><?= $vlucht['vlucht_nummer'] ?> - <?= $vlucht['stad'] ?></option>
+                        <option value="<?= $vlucht['id'] ?>" <?= $vlucht_id == $vlucht['id'] ? 'selected' : '' ?>><?= $vlucht['vlucht_nummer'] ?> - <?= $vlucht['aankomst_luchthaven'] ?></option>
                     <?php } ?>
                 </select>
             </label>
 
             <label class="grid gap-1">
                 <span class="text-sm font-semibold">Naam</span>
-                <input class="h-12 rounded-md border border-black px-3 outline-none focus:border-accent" type="text" name="naam" value="<?= $gebruiker ? $gebruiker['voornaam'] . ' ' . $gebruiker['achternaam'] : '' ?>" required>
+                <input class="h-12 rounded-md border border-black px-3 outline-none focus:border-accent" type="text" name="naam" value="<?= $gebruiker ? $gebruiker['voornaam'] : '' ?>" required>
             </label>
 
             <label class="grid gap-1">
                 <span class="text-sm font-semibold">E-mail</span>
-                <input class="h-12 rounded-md border border-black px-3 outline-none focus:border-accent" type="email" name="email" value="<?= $gebruiker ? $gebruiker['email'] : '' ?>" required>
+                <input class="h-12 rounded-md border border-black px-3 outline-none focus:border-accent" type="email" value="<?= $gebruiker ? $gebruiker['email'] : '' ?>" name="email" required>
             </label>
 
             <label class="grid gap-1">
                 <span class="text-sm font-semibold">Telefoon</span>
-                <input class="h-12 rounded-md border border-black px-3 outline-none focus:border-accent" type="text" name="telefoon" value="<?= $gebruiker ? $gebruiker['telefoon'] : '' ?>">
+                <input class="h-12 rounded-md border border-black px-3 outline-none focus:border-accent" type="text" value="<?= $gebruiker ? $gebruiker['telefoon'] : '' ?>" name="telefoon">
             </label>
 
             <label class="grid gap-1">

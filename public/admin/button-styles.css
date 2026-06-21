@@ -1,0 +1,26 @@
+.btn-reis-toevoegen,
+.btn-bewerken,
+.verwijderen {
+    display: inline-block;
+    border: 1px solid #111111;
+    border-radius: 6px;
+    padding: 9px 12px;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.btn-reis-toevoegen {
+    background: #cc8b13;
+    color: white;
+}
+
+.btn-bewerken {
+    background: white;
+    color: #111111;
+}
+
+.verwijderen {
+    background: #111111;
+    color: white;
+}

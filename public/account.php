@@ -1,5 +1,5 @@
 <?php
-include __DIR__ . "/../app/page-includes/laad-account.php";
+include __DIR__ . "/../app/page-includes/laden/laad-account.php";
 include __DIR__ . "/../app/includes/navbar.php";
 ?>
 
@@ -22,7 +22,7 @@ include __DIR__ . "/../app/includes/navbar.php";
                     $datum = $volgendeBoeking['vertrekdatum'];
 
                     if ($volgendeBoeking['vlucht_id']) {
-                        $titel = "Vlucht naar " . $volgendeBoeking['stad'];
+                        $titel = "Vlucht naar " . $volgendeBoeking['aankomst_luchthaven'];
                         $datum = $volgendeBoeking['vertrek_datum'];
                     }
                     ?>
@@ -78,12 +78,12 @@ include __DIR__ . "/../app/includes/navbar.php";
         <div class="min-w-0 space-y-6">
             <section class="grid gap-3 sm:grid-cols-3">
                 <article class="rounded-md border border-black bg-white p-4">
-                    <p class="text-xs font-bold uppercase text-accent">Actief</p>
-                    <p class="mt-2 font-fraunces text-4xl font-bold"><?= $actieveBoekingen ?></p>
+                    <p class="text-xs font-bold uppercase text-accent">Bevestigd</p>
+                    <p class="mt-2 font-fraunces text-4xl font-bold"><?= $bevestigdeBoekingen['totaal'] ?></p>
                 </article>
                 <article class="rounded-md border border-black bg-white p-4">
                     <p class="text-xs font-bold uppercase text-accent">Geannuleerd</p>
-                    <p class="mt-2 font-fraunces text-4xl font-bold"><?= $geannuleerdeBoekingen ?></p>
+                    <p class="mt-2 font-fraunces text-4xl font-bold"><?= $geannuleerdeBoekingen['totaal'] ?></p>
                 </article>
                 <article class="rounded-md border border-black bg-white p-4">
                     <p class="text-xs font-bold uppercase text-accent">Reviews</p>
@@ -98,7 +98,7 @@ include __DIR__ . "/../app/includes/navbar.php";
                         <h2 class="font-fraunces text-2xl font-bold">Mijn boekingen</h2>
                     </div>
                     <div class="flex flex-col gap-2 sm:flex-row">
-                        <a class="inline-flex h-10 items-center justify-center rounded-md bg-black px-4 text-sm font-bold text-white hover:bg-accent" href="bestemmingen.php">Nieuwe reis</a>
+                        <a class="inline-flex h-10 items-center justify-center rounded-md bg-black px-4 text-sm font-bold text-white hover:bg-accent" href="reizen.php">Nieuwe reis</a>
                         <a class="inline-flex h-10 items-center justify-center rounded-md bg-accent px-4 text-sm font-bold text-white hover:bg-black" href="vluchten.php">Nieuwe vlucht</a>
                     </div>
                 </div>
@@ -117,7 +117,7 @@ include __DIR__ . "/../app/includes/navbar.php";
                         $soort = "Pakketreis";
 
                         if ($boeking['vlucht_id']) {
-                            $titel = "Vlucht naar " . $boeking['stad'];
+                            $titel = "Vlucht naar " . $boeking['aankomst_luchthaven'];
                             $datum = $boeking['vertrek_datum'];
                             $soort = "Losse vlucht";
                         }
@@ -132,7 +132,7 @@ include __DIR__ . "/../app/includes/navbar.php";
                             <p class="text-sm font-bold text-accent"><?= $boeking['status'] ?></p>
                             <div>
                                 <?php if ($boeking['status'] !== 'geannuleerd') { ?>
-                                    <form action="../app/page-includes/verwerk-annuleren-boeking.php" method="post">
+                                    <form action="../app/page-includes/verwerken/verwerk-annuleren-boeking.php" method="post">
                                         <input type="hidden" name="boeking_id" value="<?= $boeking['id'] ?>">
                                         <button class="h-10 w-full rounded-md bg-black px-3 text-xs font-bold text-white hover:bg-accent" type="submit">Annuleren</button>
                                     </form>
@@ -160,7 +160,7 @@ include __DIR__ . "/../app/includes/navbar.php";
                 ?>
 
                 <?php if ($heeftReisBoeking) { ?>
-                    <form class="mt-5 grid gap-4" action="../app/page-includes/verwerk-recensie.php" method="post">
+                    <form class="mt-5 grid gap-4" action="../app/page-includes/verwerken/verwerk-recensie.php" method="post">
                         <div class="grid gap-4 md:grid-cols-2">
                             <label class="grid gap-1">
                                 <span class="text-sm font-semibold">Reis</span>

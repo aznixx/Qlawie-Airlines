@@ -1,0 +1,270 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    color: #111111;
+    background-image: url("../assets/landingpage.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.admin-pagina {
+    display: flex;
+    min-height: 100vh;
+}
+
+.menu {
+    width: 240px;
+    background: white;
+    border-right: 2px solid #111111;
+    padding: 20px;
+}
+
+.menu h1 {
+    margin: 0 0 30px;
+    color: #cc8b13;
+    font-size: 28px;
+}
+
+.menu-links {
+    display: grid;
+    gap: 10px;
+}
+
+.menu-links a {
+    color: #111111;
+    text-decoration: none;
+    padding: 12px;
+    font-weight: bold;
+}
+
+.menu-links a:hover {
+    background: #cc8b13;
+    color: white;
+}
+
+.dashboard {
+    flex: 1;
+    padding: 30px;
+    overflow-x: auto;
+}
+
+.bovenkant {
+    margin-bottom: 25px;
+}
+
+.bovenkant h2 {
+    margin: 0;
+    font-size: 42px;
+}
+
+.bovenkant p {
+    margin: 5px 0 0;
+    color: #cc8b13;
+    font-weight: bold;
+}
+
+.status {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-bottom: 30px;
+}
+
+.kaart {
+    background: white;
+    border: 2px solid #111111;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.kaart p {
+    margin: 0;
+    font-weight: bold;
+    color: #cc8b13;
+}
+
+.kaart h3 {
+    margin: 10px 0 0;
+    font-size: 30px;
+}
+
+.vluchten-kaart,
+.reizen-kaart,
+.orders-kaart,
+.tabel-kaart,
+.formulier-kaart {
+    background: white;
+    border: 2px solid #111111;
+    border-radius: 8px;
+    padding: 20px;
+    min-width: 1050px;
+    margin-bottom: 25px;
+}
+
+.vluchten-kaart h3,
+.formulier-kaart h3 {
+    margin-top: 0;
+}
+
+.vlucht-info,
+.vlucht-rij,
+.reizen-info,
+.reizen-rij {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+    align-items: center;
+}
+
+.orders-info,
+.orders-rij {
+    display: grid;
+    grid-template-columns: 220px 150px 90px 1fr 130px 180px;
+    gap: 10px;
+    align-items: center;
+}
+
+.boekingen-info,
+.boekingen-rij {
+    display: grid;
+    grid-template-columns: 140px 170px 1fr 100px 120px 120px 180px;
+    gap: 10px;
+    align-items: center;
+}
+
+.berichten-info,
+.berichten-rij {
+    display: grid;
+    grid-template-columns: 150px 180px 180px 1fr 120px 260px;
+    gap: 10px;
+    align-items: center;
+}
+
+.vlucht-info,
+.reizen-info,
+.orders-info,
+.boekingen-info,
+.berichten-info {
+    background: #cc8b13;
+    color: white;
+    padding: 14px;
+    font-weight: bold;
+}
+
+.vlucht-rij,
+.reizen-rij,
+.orders-rij,
+.boekingen-rij,
+.berichten-rij {
+    padding: 14px;
+    border-bottom: 1px solid #dddddd;
+}
+
+.rij {
+    overflow-wrap: anywhere;
+}
+
+.status-op-tijd {
+    display: inline-block;
+    background: #dff6dd;
+    color: #146b19;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+.reis-toevoegen {
+    margin-bottom: 20px;
+}
+
+.acties-kolom {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.acties-kolom form {
+    margin: 0;
+}
+
+.formulier-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+label {
+    display: grid;
+    gap: 6px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+input,
+select,
+textarea {
+    border: 1px solid #111111;
+    border-radius: 6px;
+    padding: 10px;
+    font: inherit;
+    background: white;
+}
+
+textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+button,
+.btn-goud,
+.btn-wit {
+    border: 1px solid #111111;
+    border-radius: 6px;
+    padding: 9px 12px;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btn-goud {
+    background: #cc8b13;
+    color: white;
+}
+
+.btn-wit {
+    display: inline-block;
+    background: white;
+    color: #111111;
+}
+
+.klein {
+    padding: 7px 9px;
+    font-size: 12px;
+}
+
+@media (max-width: 900px) {
+    .admin-pagina {
+        display: block;
+    }
+
+    .menu {
+        width: auto;
+        border-right: 0;
+        border-bottom: 2px solid #111111;
+    }
+
+    .status {
+        grid-template-columns: 1fr;
+    }
+
+    .formulier-grid {
+        grid-template-columns: 1fr;
+    }
+}

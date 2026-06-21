@@ -1,5 +1,5 @@
 <?php 
-include __DIR__ . "/../app/page-includes/laad-homepage.php"; 
+include __DIR__ . "/../app/page-includes/laden/laad-homepage.php"; 
 include __DIR__ . "/../app/includes/navbar.php";
 ?>
 
@@ -27,36 +27,37 @@ include __DIR__ . "/../app/includes/navbar.php";
                 </div>
 
                 <div class="flex flex-wrap gap-2 text-sm font-bold">
-                    <button class="rounded-md bg-accent px-4 py-2 text-white" type="button">Retour</button>
-                    <button class="rounded-md border border-black px-4 py-2 text-black hover:border-accent hover:text-accent" type="button">Enkel</button>
+                    <button id="retourKnop" class="rounded-md bg-accent px-4 py-2 text-white" type="button">Retour</button>
+                    <button id="enkelKnop" class="rounded-md border border-black px-4 py-2 text-black hover:border-accent hover:text-accent" type="button">Enkel</button>
                 </div>
             </div>
 
             <form class="grid gap-3 md:grid-cols-2 lg:grid-cols-4" action="resultaten.php" method="get">
+                <input id="reisType" type="hidden" name="reis_type" value="retour">
                 <label class="grid gap-1">
                     <span class="text-xs font-bold uppercase text-black">Van</span>
-                    <input class="h-12 rounded-md border border-black px-3 text-sm font-semibold outline-none focus:border-accent" type="text" placeholder="Vertrek vliegveld" aria-label="Vertrekplaats">
+                    <input class="h-12 rounded-md border border-black px-3 text-sm font-semibold outline-none focus:border-accent" type="text" name="van" placeholder="Vertrek vliegveld" aria-label="Vertrekplaats">
                 </label>
 
                 <label class="relative grid gap-1">
                     <span class="text-xs font-bold uppercase text-black">Naar</span>
-                    <input id="van" class="h-12 rounded-md border border-black px-3 text-sm font-semibold outline-none focus:border-accent" type="text" name="zoek" autocomplete="off" placeholder="Bestemming" aria-label="Bestemming">
+                    <input id="van" class="h-12 rounded-md border border-black px-3 text-sm font-semibold outline-none focus:border-accent" type="text" name="zoek" autocomplete="off" placeholder="Reis" aria-label="Reis">
                     <div id="van-suggestions" class="absolute left-0 z-10 hidden max-h-48 w-full overflow-y-auto rounded-md border border-black bg-white shadow-md"></div>
                 </label>
 
                 <label class="grid gap-1">
                     <span class="text-xs font-bold uppercase text-black">Vertrek</span>
-                    <input class="h-12 rounded-md border border-black px-3 text-sm font-semibold outline-none focus:border-accent" type="date" aria-label="Vertrekdatum">
+                    <input class="h-12 rounded-md border border-black px-3 text-sm font-semibold outline-none focus:border-accent" type="date" name="vertrekdatum" aria-label="Vertrekdatum">
                 </label>
 
-                <label class="grid gap-1">
+                <label id="terugVeld" class="grid gap-1">
                     <span class="text-xs font-bold uppercase text-black">Terug</span>
-                    <input class="h-12 rounded-md border border-black px-3 text-sm font-semibold outline-none focus:border-accent" type="date" aria-label="Terugdatum">
+                    <input class="h-12 rounded-md border border-black px-3 text-sm font-semibold outline-none focus:border-accent" type="date" name="terugkomstdatum" aria-label="Terugdatum">
                 </label>
 
                 <label class="grid gap-1 md:col-span-1 lg:col-span-2">
                     <span class="text-xs font-bold uppercase text-black">Reizigers</span>
-                    <select class="h-12 rounded-md border border-black px-3 text-sm font-semibold outline-none focus:border-accent" aria-label="Aantal reizigers">
+                    <select class="h-12 rounded-md border border-black px-3 text-sm font-semibold outline-none focus:border-accent" name="reizigers" aria-label="Aantal reizigers">
                         <option>1 reiziger, Economy</option>
                         <option>2 reizigers, Economy</option>
                         <option>3 reizigers, Economy</option>
@@ -67,7 +68,7 @@ include __DIR__ . "/../app/includes/navbar.php";
 
                 <label class="grid gap-1">
                     <span class="text-xs font-bold uppercase text-black">Bagage</span>
-                    <select class="h-12 rounded-md border border-black px-3 text-sm font-semibold outline-none focus:border-accent" aria-label="Bagage">
+                    <select class="h-12 rounded-md border border-black px-3 text-sm font-semibold outline-none focus:border-accent" name="bagage" aria-label="Bagage">
                         <option>Handbagage</option>
                         <option>Ruimbagage</option>
                         <option>Extra bagage</option>
@@ -97,7 +98,7 @@ include __DIR__ . "/../app/includes/navbar.php";
             <div class="rounded-md border border-black p-4">
                 <p class="text-sm font-bold text-accent">03</p>
                 <h2 class="mt-2 font-fraunces text-xl font-semibold">Populaire plekken</h2>
-                <p class="mt-2 text-sm text-black">Kies uit bestemmingen die passen bij vakantie, stad en cultuur.</p>
+                <p class="mt-2 text-sm text-black">Kies uit reizen die passen bij vakantie, stad en cultuur.</p>
             </div>
             <div class="rounded-md border border-black p-4">
                 <p class="text-sm font-bold text-accent">04</p>
@@ -115,21 +116,21 @@ include __DIR__ . "/../app/includes/navbar.php";
                     <p class="text-xs font-bold uppercase text-accent">Aanbiedingen</p>
                     <h2 class="font-fraunces text-4xl font-bold">Populaire reizen</h2>
                 </div>
-                <a class="text-sm font-bold text-accent" href="bestemmingen.php">Alle bestemmingen bekijken</a>
+                <a class="text-sm font-bold text-accent" href="reizen.php">Alle reizen bekijken</a>
             </div>
             <div class="mt-6 grid gap-5 md:grid-cols-3">
-                <?php foreach ($bestemmingen as $bestemming) { ?>
+                <?php foreach ($reizen as $reis) { ?>
                     <a
                         class="group block overflow-hidden rounded-md border border-black bg-white transition hover:-translate-y-1 hover:border-accent hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2"
-                        href="reis-info.php?slug=<?= rawurlencode($bestemming['slug']) ?>"
-                        aria-label="Bekijk reisinformatie voor <?= $bestemming['naam'] ?>">
-                        <img class="h-40 w-full object-cover transition duration-300 group-hover:scale-105" src="<?= $bestemming['afbeelding'] ?>" alt="<?= $bestemming['naam'] ?>">
+                        href="reis-info.php?id=<?= $reis['id'] ?>"
+                        aria-label="Bekijk reisinformatie voor <?= $reis['titel'] ?>">
+                        <img class="h-40 w-full object-cover transition duration-300 group-hover:scale-105" src="<?= $reis['afbeelding'] ?>" alt="<?= $reis['titel'] ?>">
                         <div class="p-5">
-                            <p class="text-sm font-bold text-accent"><?= $bestemming['aantal_dagen'] ?> dagen</p>
-                            <h2 class="font-fraunces text-2xl font-semibold"><?= $bestemming["naam"] ?></h2>
-                            <p class="mt-2 text-sm text-black"><?= $bestemming['korte_beschrijving'] ?></p>
+                            <p class="text-sm font-bold text-accent"><?= $reis['duur_dagen'] ?> dagen</p>
+                            <h2 class="font-fraunces text-2xl font-semibold"><?= $reis["titel"] ?></h2>
+                            <p class="mt-2 text-sm text-black"><?= $reis['korte_beschrijving'] ?></p>
                             <div class="mt-4 flex items-center justify-between gap-3">
-                                <p class="font-bold text-accent">&euro;<?= $bestemming['prijs_reis'] ?></p>
+                                <p class="font-bold text-accent">&euro;<?= $reis['prijs_vanaf'] ?></p>
                                 <span class="inline-flex rounded-md bg-accent px-4 py-2 text-sm font-bold text-white transition group-hover:bg-black">Bekijk reis</span>
                             </div>
                         </div>
@@ -140,26 +141,27 @@ include __DIR__ . "/../app/includes/navbar.php";
     </section>
 
     <!-- uitgelichte reis -->
-    <?php if (!empty($bestemmingen)) {
-        $i = rand(0, 3);
-        $uitgelicht = $bestemmingen[$i];
+    <?php if (!empty($reizen)) {
+        $laatste = count($reizen) - 1;
+        $i = rand(0, $laatste);
+        $uitgelicht = $reizen[$i];
     ?>
         <section class="bg-white px-6 py-12">
             <div class="mx-auto grid max-w-6xl overflow-hidden rounded-md border border-black md:grid-cols-2">
-                <img class="h-72 w-full object-cover md:h-full" src="<?= $uitgelicht['afbeelding'] ?>" alt="<?= $uitgelicht['naam'] ?>">
+                <img class="h-72 w-full object-cover md:h-full" src="<?= $uitgelicht['afbeelding'] ?>" alt="<?= $uitgelicht['titel'] ?>">
                 <div class="p-6 md:p-8">
                     <p class="text-xs font-bold uppercase text-accent">uitgelichte reis</p>
-                    <h2 class="mt-2 font-fraunces text-4xl font-bold"><?= $uitgelicht["naam"] ?></h2>
+                    <h2 class="mt-2 font-fraunces text-4xl font-bold"><?= $uitgelicht["titel"] ?></h2>
                     <p class="mt-4 text-sm text-black"><?= $uitgelicht['korte_beschrijving'] ?></p>
 
                     <div class="mt-6 grid gap-3 sm:grid-cols-3">
                         <div class="rounded-md border border-black p-4">
                             <p class="text-xs font-bold uppercase text-accent">duur</p>
-                            <p class="mt-2 font-fraunces text-2xl font-semibold"><?= $uitgelicht['aantal_dagen'] ?> dagen</p>
+                            <p class="mt-2 font-fraunces text-2xl font-semibold"><?= $uitgelicht['duur_dagen'] ?> dagen</p>
                         </div>
                         <div class="rounded-md border border-black p-4">
                             <p class="text-xs font-bold uppercase text-accent">prijs</p>
-                            <p class="mt-2 font-fraunces text-2xl font-semibold">&euro;<?= $uitgelicht['prijs_reis'] ?></p>
+                            <p class="mt-2 font-fraunces text-2xl font-semibold">&euro;<?= $uitgelicht['prijs_vanaf'] ?></p>
                         </div>
                         <div class="rounded-md border border-black p-4">
                             <p class="text-xs font-bold uppercase text-accent">type</p>
@@ -168,8 +170,8 @@ include __DIR__ . "/../app/includes/navbar.php";
                     </div>
 
                     <div class="mt-6 flex flex-col gap-3 sm:flex-row">
-                        <a class="inline-flex justify-center rounded-md bg-accent px-5 py-3 text-sm font-bold text-white hover:bg-black" href="reis-info.php?slug=<?= rawurlencode($uitgelicht['slug']) ?>">Bekijk reis</a>
-                        <a class="inline-flex justify-center rounded-md border border-black px-5 py-3 text-sm font-bold text-black hover:border-accent hover:text-accent" href="boeken.php">Boek nu</a>
+                        <a class="inline-flex justify-center rounded-md bg-accent px-5 py-3 text-sm font-bold text-white hover:bg-black" href="reis-info.php?id=<?= $uitgelicht['id'] ?>">Bekijk reis</a>
+                        <a class="inline-flex justify-center rounded-md border border-black px-5 py-3 text-sm font-bold text-black hover:border-accent hover:text-accent" href="boeken.php?reis_id=<?= $uitgelicht['id'] ?>">Boek nu</a>
                     </div>
                 </div>
             </div>
@@ -184,14 +186,14 @@ include __DIR__ . "/../app/includes/navbar.php";
                 <p class="mt-3 text-sm text-black">Duidelijke reizen, simpele boekingen en hulp als je vragen hebt.</p>
             </div>
             <div class="rounded-md border border-black bg-white p-5">
-                <h3 class="font-fraunces text-xl font-semibold">Bestemmingen</h3>
+                <h3 class="font-fraunces text-xl font-semibold">Reizen</h3>
                 <p class="mt-2 text-sm text-black">Lees informatie over locaties voordat je boekt.</p>
-                <a class="mt-3 inline-block text-sm font-bold text-accent" href="bestemmingen.php">Bekijk bestemmingen</a>
+                <a class="mt-3 inline-block text-sm font-bold text-accent" href="reizen.php">Bekijk reizen</a>
             </div>
             <div class="rounded-md border border-black bg-white p-5">
                 <h3 class="font-fraunces text-xl font-semibold">Boeken</h3>
-                <p class="mt-2 text-sm text-black">Kies een bestemming en rond je boeking makkelijk af.</p>
-                <a class="mt-3 inline-block text-sm font-bold text-accent" href="bestemmingen.php">Boek een reis</a>
+                <p class="mt-2 text-sm text-black">Kies een reis en rond je boeking makkelijk af.</p>
+                <a class="mt-3 inline-block text-sm font-bold text-accent" href="reizen.php">Boek een reis</a>
             </div>
             <div class="rounded-md border border-black bg-white p-5">
                 <h3 class="font-fraunces text-xl font-semibold">Contact</h3>
@@ -210,7 +212,7 @@ include __DIR__ . "/../app/includes/navbar.php";
             <div class="mt-6 grid gap-5 md:grid-cols-3">
                 <div class="rounded-md border border-black p-5">
                     <div class="flex h-10 w-10 items-center justify-center rounded-md bg-accent text-sm font-bold text-white">1</div>
-                    <h3 class="mt-4 font-fraunces text-2xl font-semibold">Kies je bestemming</h3>
+                    <h3 class="mt-4 font-fraunces text-2xl font-semibold">Kies je reis</h3>
                     <p class="mt-2 text-sm text-black">Zoek op plek, bekijk de korte info en vergelijk de reizen.</p>
                 </div>
                 <div class="rounded-md border border-black p-5">
@@ -233,10 +235,10 @@ include __DIR__ . "/../app/includes/navbar.php";
             <div>
                 <p class="text-xs font-bold uppercase text-accent">Klaar voor vertrek?</p>
                 <h2 class="mt-2 font-fraunces text-4xl font-bold">Plan vandaag je volgende reis.</h2>
-                <p class="mt-3 max-w-2xl text-sm text-white">Bekijk alle bestemmingen of stuur ons een bericht als je hulp nodig hebt bij je keuze.</p>
+                <p class="mt-3 max-w-2xl text-sm text-white">Bekijk alle reizen of stuur ons een bericht als je hulp nodig hebt bij je keuze.</p>
             </div>
             <div class="flex flex-col gap-3 sm:flex-row">
-                <a class="inline-flex justify-center rounded-md bg-accent px-5 py-3 text-sm font-bold text-white hover:bg-white hover:text-black" href="bestemmingen.php">Bekijk bestemmingen</a>
+                <a class="inline-flex justify-center rounded-md bg-accent px-5 py-3 text-sm font-bold text-white hover:bg-white hover:text-black" href="reizen.php">Bekijk reizen</a>
                 <a class="inline-flex justify-center rounded-md border border-white px-5 py-3 text-sm font-bold text-white hover:border-accent hover:text-accent" href="contact.php">Contact</a>
             </div>
         </div>
@@ -244,7 +246,7 @@ include __DIR__ . "/../app/includes/navbar.php";
 
 </main>
 <script>
-    const bestemmingen = <?php echo json_encode(array_column($bestemmingen, 'naam')); ?>;
+    const reizen = <?php echo json_encode(array_column($reizen, 'titel')); ?>;
 
     const dinosaur = document.getElementById('van');
     const suggestions = document.getElementById('van-suggestions');
@@ -258,7 +260,7 @@ include __DIR__ . "/../app/includes/navbar.php";
             return;
         }
 
-        const matches = bestemmingen.filter(b => b.toLowerCase().includes(niekisvanmij));
+        const matches = reizen.filter(b => b.toLowerCase().includes(niekisvanmij));
 
         if (matches.length === 0) {
             suggestions.classList.add('hidden');
