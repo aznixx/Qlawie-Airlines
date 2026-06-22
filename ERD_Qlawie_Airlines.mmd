@@ -1,0 +1,90 @@
+erDiagram
+    gebruikers {
+        int_unsigned id PK
+        varchar voornaam
+        varchar achternaam
+        varchar email
+        varchar telefoon
+        varchar wachtwoord_hash
+        enum rol
+    }
+
+    reizen {
+        int_unsigned id PK
+        varchar titel
+        varchar korte_beschrijving
+        text beschrijving
+        varchar vertrek_luchthaven
+        varchar aankomst_luchthaven
+        date vertrekdatum
+        date terugkomstdatum
+        smallint_unsigned duur_dagen
+        enum reisklasse
+        decimal prijs_vanaf
+        smallint_unsigned beschikbare_plekken
+        varchar bagage_inbegrepen
+        varchar afbeelding
+    }
+
+    vluchten {
+        int id PK
+        varchar vertrek_luchthaven
+        varchar aankomst_luchthaven
+        datetime vertrek_datum
+        datetime aankomst_datum
+        decimal prijs
+        int stoelen
+        varchar vlucht_nummer
+        varchar afbeelding
+    }
+
+    boekingen {
+        int_unsigned id PK
+        varchar boekingsnummer
+        int_unsigned gebruiker_id FK
+        int_unsigned reis_id FK
+        int vlucht_id FK
+        varchar klant_naam
+        varchar klant_email
+        varchar klant_telefoon
+        tinyint_unsigned aantal_reizigers
+        enum reisklasse
+        varchar bagage_keuze
+        decimal totaalprijs
+        enum status
+        text opmerkingen
+    }
+
+    recensies {
+        int_unsigned id PK
+        int_unsigned reis_id FK
+        int_unsigned gebruiker_id FK
+        varchar naam
+        tinyint_unsigned rating
+        text bericht
+        enum status
+    }
+
+    contact_berichten {
+        int_unsigned id PK
+        varchar naam
+        varchar email
+        varchar onderwerp
+        text bericht
+        enum status
+    }
+
+    wachtwoord_resets {
+        int_unsigned id PK
+        int_unsigned gebruiker_id FK
+        varchar token_hash
+        datetime verloopt_op
+        datetime gebruikt_op
+    }
+
+    gebruikers ||--o{ boekingen : maakt
+    reizen ||--o{ boekingen : hoort_bij
+    vluchten ||--o{ boekingen : hoort_bij
+    gebruikers ||--o{ recensies : schrijft
+    reizen ||--o{ recensies : krijgt
+    gebruikers ||--o{ wachtwoord_resets : vraagt_aan
