@@ -17,15 +17,15 @@ document.addEventListener('DOMContentLoaded', function () {
         retourKnop.addEventListener('click', function () {
             reisType.value = 'retour';
             terugVeld.classList.remove('hidden');
-            retourKnop.className = 'rounded-md bg-accent px-4 py-2 text-white';
-            enkelKnop.className = 'rounded-md border border-black px-4 py-2 text-black hover:border-accent hover:text-accent';
+            retourKnop.className = 'knop';
+            enkelKnop.className = 'knop-lijn';
         });
 
         enkelKnop.addEventListener('click', function () {
             reisType.value = 'enkel';
             terugVeld.classList.add('hidden');
-            enkelKnop.className = 'rounded-md bg-accent px-4 py-2 text-white';
-            retourKnop.className = 'rounded-md border border-black px-4 py-2 text-black hover:border-accent hover:text-accent';
+            enkelKnop.className = 'knop';
+            retourKnop.className = 'knop-lijn';
         });
     }
 
@@ -61,4 +61,32 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     });
+
+    var tekstVelden = document.querySelectorAll('textarea');
+
+    tekstVelden.forEach(function (tekstVeld) {
+        var teller = document.createElement('p');
+        teller.className = 'tekst-teller';
+        teller.innerText = '0 tekens';
+
+        tekstVeld.parentNode.appendChild(teller);
+
+        tekstVeld.addEventListener('input', function () {
+            teller.innerText = tekstVeld.value.length + ' tekens';
+        });
+    });
+
+    var reisklasse = document.querySelector('select[name="reisklasse"]');
+
+    if (reisklasse) {
+        var opgeslagenReisklasse = localStorage.getItem('reisklasse');
+
+        if (opgeslagenReisklasse) {
+            reisklasse.value = opgeslagenReisklasse;
+        }
+
+        reisklasse.addEventListener('change', function () {
+            localStorage.setItem('reisklasse', reisklasse.value);
+        });
+    }
 });

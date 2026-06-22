@@ -7,9 +7,9 @@ if (!isset($_SESSION['gebruiker_id'])) {
     exit;
 }
 
-$reis_id = $_POST['reis_id'] ?? '';
-$rating = $_POST['rating'] ?? 5;
-$bericht = $_POST['bericht'] ?? '';
+$reis_id = $_POST['reis_id'];
+$rating = $_POST['rating'];
+$bericht = $_POST['bericht'];
 $gebruiker_id = $_SESSION['gebruiker_id'];
 
 if ($reis_id === '' || $bericht === '') {

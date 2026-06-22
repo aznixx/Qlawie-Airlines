@@ -7,12 +7,12 @@ if (isset($_SESSION['gebruiker_id'])) {
     exit;
 }
 
-$voornaam = $_POST['voornaam'] ?? '';
-$achternaam = $_POST['achternaam'] ?? '';
-$email = $_POST['email'] ?? '';
-$telefoon = $_POST['telefoon'] ?? '';
-$wachtwoord = $_POST['wachtwoord'] ?? '';
-$wachtwoord_h = $_POST['wachtwoord_herhalen'] ?? '';
+$voornaam = $_POST['voornaam'];
+$achternaam = $_POST['achternaam'];
+$email = $_POST['email'];
+$telefoon = $_POST['telefoon'];
+$wachtwoord = $_POST['wachtwoord'];
+$wachtwoord_h = $_POST['wachtwoord_herhalen'];
 
 if ($voornaam === '' || $achternaam === '' || $email === '' || $wachtwoord === '') {
     $_SESSION['foutmelding'] = "Vul alle verplichte velden in.";
@@ -36,19 +36,19 @@ if ($stmt->fetch()) {
     exit;
 }
 
-$wachtwoord_hash = password_hash($wachtwoord, PASSWORD_DEFAULT);
+
 $rol = "klant";
 
 $stmt = $pdo->prepare("INSERT INTO gebruikers
-(voornaam, achternaam, email, telefoon, wachtwoord_hash, rol)
+(voornaam, achternaam, email, telefoon, wachtwoord, rol)
 VALUES
-(:voornaam, :achternaam, :email, :telefoon, :wachtwoord_hash, :rol)");
+(:voornaam, :achternaam, :email, :telefoon, :wachtwoord, :rol)");
 
 $stmt->bindParam(':voornaam', $voornaam);
 $stmt->bindParam(':achternaam', $achternaam);
 $stmt->bindParam(':email', $email);
 $stmt->bindParam(':telefoon', $telefoon);
-$stmt->bindParam(':wachtwoord_hash', $wachtwoord_hash);
+$stmt->bindParam(':wachtwoord', $wachtwoord);
 $stmt->bindParam(':rol', $rol);
 $stmt->execute();
 

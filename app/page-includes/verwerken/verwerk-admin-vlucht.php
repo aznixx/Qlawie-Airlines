@@ -7,8 +7,8 @@ if (!isset($_SESSION['gebruiker_id']) || $_SESSION['rol'] !== 'beheerder') {
     exit;
 }
 
-$actie = $_POST['actie'] ?? '';
-$id = $_POST['id'] ?? '';
+$actie = $_POST['actie'];
+$id = $_POST['id'];
 
 if ($actie === 'verwijderen') {
     $stmt = $pdo->prepare("DELETE FROM vluchten WHERE id = :id");
@@ -19,13 +19,13 @@ if ($actie === 'verwijderen') {
     exit;
 }
 
-$vertrek_luchthaven = $_POST['vertrek_luchthaven'] ?? '';
-$aankomst_luchthaven = $_POST['aankomst_luchthaven'] ?? '';
-$vertrek_datum = $_POST['vertrek_datum'] ?? '';
-$aankomst_datum = $_POST['aankomst_datum'] ?? '';
+$vertrek_luchthaven = $_POST['vertrek_luchthaven'];
+$aankomst_luchthaven = $_POST['aankomst_luchthaven'];
+$vertrek_datum = $_POST['vertrek_datum'];
+$aankomst_datum = $_POST['aankomst_datum'];
 $prijs = $_POST['prijs'] ?? 0;
 $stoelen = $_POST['stoelen'] ?? 0;
-$vlucht_nummer = $_POST['vlucht_nummer'] ?? '';
+$vlucht_nummer = $_POST['vlucht_nummer'];
 
 if ($actie === 'wijzigen') {
     $stmt = $pdo->prepare("UPDATE vluchten SET

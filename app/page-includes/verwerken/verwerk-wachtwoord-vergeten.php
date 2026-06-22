@@ -2,7 +2,7 @@
 session_start();
 require_once __DIR__ . "/../../config/pdo.php";
 
-$email = $_POST['email'] ?? '';
+$email = $_POST['email'] ;
 
 if ($email === '') {
     $_SESSION['melding'] = "Vul je e-mail in.";
@@ -18,15 +18,14 @@ $gebruiker = $stmt->fetch();
 if ($gebruiker) {
     $gebruiker_id = $gebruiker['id'];
 
-    $token = rand(100000, 999999);
-
-    $stmt = $pdo->prepare("INSERT INTO wachtwoord_resets (gebruiker_id, token_hash, verloopt_op)
-    VALUES (:gebruiker_id, :token_hash, DATE_ADD(NOW(), INTERVAL 1 HOUR))");
+    $tijdelijkeKey = rand(0, 10);
+    $stmt = $pdo->prepare("INSERT INTO wachtwoord_resets (gebruiker_id, tijdelijkeKey)
+    VALUES (:gebruiker_id, :tijdKey)");
     $stmt->bindParam(':gebruiker_id', $gebruiker_id);
-    $stmt->bindParam(':token_hash', $token);
+    $stmt->bindParam(":tijdKey", $tijdelijkeKey);
     $stmt->execute();
 
-    $_SESSION['reset_link'] = "wachtwoord-resetten.php?token=" . $token;
+    $_SESSION['reset_link'] = "wachtwoord-resetten.php?token=" . $tijdelijkeKey;
 }
 
 $_SESSION['melding'] = "Als dit e-mailadres bestaat, kun je je wachtwoord resetten.";

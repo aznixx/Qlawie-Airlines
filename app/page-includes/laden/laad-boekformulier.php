@@ -1,14 +1,14 @@
 <?php
 session_start();
 
-$foutmelding = $_SESSION['foutmelding'] ?? '';
+$foutmelding = $_SESSION['foutmelding'];
 unset($_SESSION['foutmelding']);
 
 require_once __DIR__ . "/../../config/pdo.php";
 
-$reis_id = $_GET['reis_id'] ?? '';
-$vlucht_id = $_GET['vlucht_id'] ?? '';
-$gebruiker_id = $_SESSION['gebruiker_id'] ?? '';
+$reis_id = $_GET['reis_id'];
+$vlucht_id = $_GET['vlucht_id'];
+$gebruiker_id = $_SESSION['gebruiker_id'];
 $gebruiker = false;
 
 $stmt = $pdo->prepare("SELECT * FROM vluchten");

@@ -7,8 +7,8 @@ if (!isset($_SESSION['gebruiker_id']) || $_SESSION['rol'] !== 'beheerder') {
     exit;
 }
 
-$actie = $_POST['actie'] ?? '';
-$id = $_POST['id'] ?? '';
+$actie = $_POST['actie'] ;
+$id = $_POST['id'] ;
 
 if ($actie === 'verwijderen') {
     $stmt = $pdo->prepare("DELETE FROM reizen WHERE id = :id");
@@ -19,18 +19,18 @@ if ($actie === 'verwijderen') {
     exit;
 }
 
-$titel = $_POST['titel'] ?? '';
-$korte_beschrijving = $_POST['korte_beschrijving'] ?? '';
-$beschrijving = $_POST['beschrijving'] ?? '';
-$vertrek_luchthaven = $_POST['vertrek_luchthaven'] ?? '';
-$aankomst_luchthaven = $_POST['aankomst_luchthaven'] ?? '';
-$vertrekdatum = $_POST['vertrekdatum'] ?? '';
-$terugkomstdatum = $_POST['terugkomstdatum'] ?? '';
+$titel = $_POST['titel'] ;
+$korte_beschrijving = $_POST['korte_beschrijving'] ;
+$beschrijving = $_POST['beschrijving'] ;
+$vertrek_luchthaven = $_POST['vertrek_luchthaven'] ;
+$aankomst_luchthaven = $_POST['aankomst_luchthaven'] ;
+$vertrekdatum = $_POST['vertrekdatum'] ;
+$terugkomstdatum = $_POST['terugkomstdatum'] ;
 $duur_dagen = $_POST['duur_dagen'] ?? 1;
 $reisklasse = $_POST['reisklasse'] ?? 'Economy';
 $prijs_vanaf = $_POST['prijs_vanaf'] ?? 0;
 $beschikbare_plekken = $_POST['beschikbare_plekken'] ?? 0;
-$bagage_inbegrepen = $_POST['bagage_inbegrepen'] ?? '';
+$bagage_inbegrepen = $_POST['bagage_inbegrepen'] ;
 $afbeelding = $_POST['afbeelding'] ?? 'assets/landingpage.jpg';
 
 if ($actie === 'wijzigen') {

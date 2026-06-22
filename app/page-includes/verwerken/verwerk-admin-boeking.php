@@ -7,8 +7,8 @@ if (!isset($_SESSION['gebruiker_id']) || $_SESSION['rol'] !== 'beheerder') {
     exit;
 }
 
-$boeking_id = $_POST['boeking_id'] ?? $_POST['id'] ?? '';
-$status = $_POST['status'] ?? '';
+$boeking_id = $_POST['boeking_id'] ?? $_POST['id'] ;
+$status = $_POST['status'] ;
 
 if ($boeking_id === '' || $status === '') {
     header("Location: ../../../public/admin/boekingen.php");

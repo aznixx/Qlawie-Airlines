@@ -1,28 +1,27 @@
-<?php 
+<?php
 include __DIR__ . "/../app/includes/navbar.php";
 ?>
 
-<main class="px-6 py-12">
-    <section class="mx-auto max-w-5xl">
-        <p class="text-xs font-bold uppercase text-accent">Over ons</p>
-        <h1 class="font-fraunces text-4xl font-bold">Wie zijn wij?</h1>
-        <p class="mt-4 max-w-3xl text-black">
-            Qlawie Airlines is een klein reisbureau dat reizen simpel en duidelijk wil maken.
-            We helpen klanten met reizen, vluchten en vragen voor vertrek.
-        </p>
+<main>
+    <section class="section">
+        <div class="container">
+            <p class="eyebrow">Over ons</p>
+            <h1>Wie zijn wij?</h1>
+            <p>Qlawie Airlines is een klein reisbureau dat reizen simpel en duidelijk wil maken. We helpen klanten met reizen, vluchten en vragen voor vertrek.</p>
 
-        <div class="mt-8 grid gap-4 md:grid-cols-3">
-            <div class="rounded-md border border-black p-4">
-                <h2 class="font-fraunces text-xl font-semibold">Duidelijk</h2>
-                <p class="mt-2 text-sm text-black">Geen onnodige kleine lettertjes, gewoon weten wat je boekt.</p>
-            </div>
-            <div class="rounded-md border border-black p-4">
-                <h2 class="font-fraunces text-xl font-semibold">Betaalbaar</h2>
-                <p class="mt-2 text-sm text-black">We zoeken reizen die passen bij normale budgetten.</p>
-            </div>
-            <div class="rounded-md border border-black p-4">
-                <h2 class="font-fraunces text-xl font-semibold">Bereikbaar</h2>
-                <p class="mt-2 text-sm text-black">Via de contactpagina kun je ons makkelijk een bericht sturen.</p>
+            <div class="grid-3">
+                <div class="card">
+                    <h3>Duidelijk</h3>
+                    <p>Geen onnodige kleine lettertjes, gewoon weten wat je boekt.</p>
+                </div>
+                <div class="card">
+                    <h3>Betaalbaar</h3>
+                    <p>We zoeken reizen die passen bij normale budgetten.</p>
+                </div>
+                <div class="card">
+                    <h3>Bereikbaar</h3>
+                    <p>Via de contactpagina kun je ons makkelijk een bericht sturen.</p>
+                </div>
             </div>
         </div>
     </section>

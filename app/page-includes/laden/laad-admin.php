@@ -38,13 +38,6 @@ $stmt = $pdo->prepare("SELECT SUM(totaalprijs) AS totaal FROM boekingen");
 $stmt->execute();
 $omzet = $stmt->fetch();
 
-if ($aantalPassagiers['totaal'] === null) {
-    $aantalPassagiers['totaal'] = 0;
-}
-
-if ($omzet['totaal'] === null) {
-    $omzet['totaal'] = 0;
-}
 
 $reis_bewerken = false;
 

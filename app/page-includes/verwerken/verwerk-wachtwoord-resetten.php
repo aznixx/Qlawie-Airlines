@@ -2,24 +2,27 @@
 session_start();
 require_once __DIR__ . "/../../config/pdo.php";
 
-$token = $_POST['token'] ?? '';
-$wachtwoord = $_POST['wachtwoord'] ?? '';
-$wachtwoord_herhalen = $_POST['wachtwoord_herhalen'] ?? '';
 
-if ($token === '' || $wachtwoord === '') {
+// deze token is gewoon om te weten welke van wie is door middel van die token op te slaan in de database
+// en daarna gewoon pakken vannuit de hidden input in wachtwoord-resetten.php
+$token = $_POST['tijdelijkeKey'];
+$wachtwoord = $_POST['wachtwoord'];
+$wachtwoord_herhalen = $_POST['wachtwoord_herhalen'];
+
+if ($wachtwoord === '') {
     $_SESSION['melding'] = "Vul alle velden in.";
-    header("Location: ../../../public/wachtwoord-resetten.php?token=" . $token);
+    header("Location: ../../../public/wachtwoord-resetten.php");
     exit;
 }
 
 if ($wachtwoord !== $wachtwoord_herhalen) {
     $_SESSION['melding'] = "Wachtwoorden komen niet overeen.";
-    header("Location: ../../../public/wachtwoord-resetten.php?token=" . $token);
+    header("Location: ../../../public/wachtwoord-resetten.php");
     exit;
 }
 
-$stmt = $pdo->prepare("SELECT * FROM wachtwoord_resets WHERE token_hash = :token AND gebruikt_op IS NULL AND verloopt_op > NOW() LIMIT 1");
-$stmt->bindParam(':token', $token);
+$stmt = $pdo->prepare("SELECT * FROM wachtwoord_resets WHERE tijdelijkeKey = :tijdelijkeKey AND gebruikt_op IS NULL");
+$stmt->bindParam(":tijdelijkeKey", $token);
 $stmt->execute();
 $reset = $stmt->fetch();
 
@@ -30,10 +33,9 @@ if (!$reset) {
 }
 
 $gebruiker_id = $reset['gebruiker_id'];
-$wachtwoord_hash = password_hash($wachtwoord, PASSWORD_DEFAULT);
 
-$stmt = $pdo->prepare("UPDATE gebruikers SET wachtwoord_hash = :wachtwoord_hash WHERE id = :id");
-$stmt->bindParam(':wachtwoord_hash', $wachtwoord_hash);
+$stmt = $pdo->prepare("UPDATE gebruikers SET wachtwoord = :wachtwoord WHERE id = :id");
+$stmt->bindParam(':wachtwoord', $wachtwoord);
 $stmt->bindParam(':id', $gebruiker_id);
 $stmt->execute();
 

@@ -7,7 +7,7 @@ if (!isset($_SESSION['gebruiker_id'])) {
     exit;
 }
 
-$boeking_id = $_POST['boeking_id'] ?? '';
+$boeking_id = $_POST['boeking_id'];
 $gebruiker_id = $_SESSION['gebruiker_id'];
 
 if ($boeking_id !== '') {

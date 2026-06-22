@@ -3,31 +3,33 @@ include __DIR__ . "/../app/page-includes/laden/laad-wachtwoord-resetten.php";
 include __DIR__ . "/../app/includes/navbar.php";
 ?>
 
-<main class="px-6 py-12">
-    <section class="mx-auto max-w-xl">
-        <p class="text-xs font-bold uppercase text-accent">Account</p>
-        <h1 class="font-fraunces text-4xl font-bold">Nieuw wachtwoord</h1>
-        <p class="mt-3 text-black">Kies een nieuw wachtwoord.</p>
+<main>
+    <section class="section">
+        <div class="container">
+            <p class="eyebrow">Account</p>
+            <h1>Nieuw wachtwoord</h1>
+            <p>Kies een nieuw wachtwoord.</p>
 
-        <?php if ($melding !== '') { ?>
-            <p class="mt-5 rounded-md border border-black p-4 text-sm font-bold text-accent"><?= $melding ?></p>
-        <?php } ?>
+            <?php if ($melding !== '') { ?>
+                <p class="melding"><?= $melding ?></p>
+            <?php } ?>
 
-        <form class="wachtwoordForm mt-8 grid gap-4 rounded-md border border-black p-5" action="../app/page-includes/verwerken/verwerk-wachtwoord-resetten.php" method="post">
-            <input type="hidden" name="token" value="<?= $token ?>">
+            <form class="wachtwoordForm form" action="../app/page-includes/verwerken/verwerk-wachtwoord-resetten.php" method="post">
+                <input type="hidden" name="tijdelijkeKey" value="<?= $token ?>">
 
-            <label class="grid gap-1">
-                <span class="text-sm font-semibold">Wachtwoord</span>
-                <input class="h-12 rounded-md border border-black px-3 outline-none focus:border-accent" type="password" name="wachtwoord" required>
-            </label>
+                <label>
+                    Wachtwoord
+                    <input type="password" name="wachtwoord" required>
+                </label>
 
-            <label class="grid gap-1">
-                <span class="text-sm font-semibold">Herhaal wachtwoord</span>
-                <input class="h-12 rounded-md border border-black px-3 outline-none focus:border-accent" type="password" name="wachtwoord_herhalen" required>
-            </label>
+                <label>
+                    Herhaal wachtwoord
+                    <input type="password" name="wachtwoord_herhalen" required>
+                </label>
 
-            <button class="h-12 rounded-md bg-accent px-5 text-sm font-bold text-white hover:bg-black" type="submit">Wachtwoord opslaan</button>
-        </form>
+                <button class="knop" type="submit">Wachtwoord opslaan</button>
+            </form>
+        </div>
     </section>
 </main>
 

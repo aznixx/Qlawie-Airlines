@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . "/../../config/pdo.php";
 
-$zoek = $_GET['zoek'] ?? '';
+$zoek = $_GET['zoek'] ;
 
 if ($zoek === '') {
     $stmt = $pdo->prepare("SELECT * FROM reizen");

@@ -7,8 +7,8 @@ if (!isset($_SESSION['gebruiker_id']) || $_SESSION['rol'] !== 'beheerder') {
     exit;
 }
 
-$bericht_id = $_POST['bericht_id'] ?? $_POST['id'] ?? '';
-$status = $_POST['status'] ?? '';
+$bericht_id = $_POST['bericht_id'] ?? $_POST['id'] ;
+$status = $_POST['status'] ;
 
 if ($bericht_id === '' || $status === '') {
     header("Location: ../../../public/admin/berichten.php");

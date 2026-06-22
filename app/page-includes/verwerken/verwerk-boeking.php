@@ -2,16 +2,16 @@
 session_start();
 require_once __DIR__ . "/../../config/pdo.php";
 
-$reis_id = $_POST['reis_id'] ?? '';
-$vlucht_id = $_POST['vlucht_id'] ?? '';
-$naam = $_POST['naam'] ?? '';
-$email = $_POST['email'] ?? '';
-$telefoon = $_POST['telefoon'] ?? '';
-$reizigers = $_POST['reizigers'] ?? 1;
+$reis_id = $_POST['reis_id'];
+$vlucht_id = $_POST['vlucht_id'];
+$naam = $_POST['naam'];
+$email = $_POST['email'];
+$telefoon = $_POST['telefoon'];
+$reizigers = $_POST['reizigers'];
 $reisklasse = $_POST['reisklasse'] ?? 'Economy';
 $bagage = $_POST['bagage'] ?? 'Handbagage';
-$opmerkingen = $_POST['opmerkingen'] ?? '';
-$gebruiker_id = $_SESSION['gebruiker_id'] ?? null;
+$opmerkingen = $_POST['opmerkingen'];
+$gebruiker_id = $_SESSION['gebruiker_id'];
 
 if ($naam === '' || $email === '') {
     $_SESSION['foutmelding'] = "Vul je naam en e-mail in.";
