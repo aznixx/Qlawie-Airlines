@@ -14,7 +14,7 @@ $telefoon = $_POST['telefoon'];
 $wachtwoord = $_POST['wachtwoord'];
 $wachtwoord_h = $_POST['wachtwoord_herhalen'];
 
-if ($voornaam === '' || $achternaam === '' || $email === '' || $wachtwoord === '') {
+if ($voornaam == '' || $achternaam == '' || $email == '' || $wachtwoord == '') {
     $_SESSION['foutmelding'] = "Vul alle verplichte velden in.";
     header("Location: ../../../public/registreren.php");
     exit;

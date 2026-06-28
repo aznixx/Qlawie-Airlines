@@ -10,8 +10,8 @@ include __DIR__ . "/../app/includes/navbar.php";
             <h1>Nieuw wachtwoord</h1>
             <p>Kies een nieuw wachtwoord.</p>
 
-            <?php if ($melding !== '') { ?>
-                <p class="melding"><?= $melding ?></p>
+            <?php if (isset($_SESSION['melding'])) { ?>
+                <p class="melding"><?= $_SESSION['melding'] ?></p>
             <?php } ?>
 
             <form class="wachtwoordForm form" action="../app/page-includes/verwerken/verwerk-wachtwoord-resetten.php" method="post">

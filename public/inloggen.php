@@ -1,8 +1,5 @@
 <?php
 include __DIR__ . "/../app/includes/navbar.php";
-
-$foutmelding = $_SESSION['foutmelding'] ;
-unset($_SESSION['foutmelding']);
 ?>
 
 <main>
@@ -29,9 +26,7 @@ unset($_SESSION['foutmelding']);
             <p>Nog geen account? <a class="text-bold accent-tekst" href="registreren.php">Maak een account aan</a></p>
             <p>Wachtwoord kwijt? <a class="text-bold accent-tekst" href="wachtwoord-vergeten.php">Reset je wachtwoord</a></p>
 
-            <?php if ($foutmelding !== '') { ?>
-                <p class="melding"><?= $foutmelding ?></p>
-            <?php } ?>
+            <?php include("../app/page-includes/laden/laad-foutmelding.php") ?>
         </div>
     </section>
 </main>

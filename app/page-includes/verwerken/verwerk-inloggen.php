@@ -11,7 +11,7 @@ require_once __DIR__ . "/../../config/pdo.php";
 $email = $_POST['email'];
 $wachtwoord = $_POST['wachtwoord'];
 
-if ($email === '' || $wachtwoord === '') {
+if ($email == '' || $wachtwoord == '') {
     $_SESSION['foutmelding'] = "Vul je e-mail en wachtwoord in.";
     header("Location: ../../../public/inloggen.php");
     exit;
@@ -22,11 +22,11 @@ $stmt->bindParam(':email', $email);
 $stmt->execute();
 $gebruiker = $stmt->fetch();
 
-if ($gebruiker && $wachtwoord === $gebruiker['wachtwoord']) {
+if ($gebruiker && $wachtwoord == $gebruiker['wachtwoord']) {
     $_SESSION['gebruiker_id'] = $gebruiker['id'];
     $_SESSION['rol'] = $gebruiker['rol'];
 
-    if ($_SESSION['rol'] === 'beheerder') {
+    if ($_SESSION['rol'] == 'beheerder') {
         header("Location: ../../../public/admin/admin_dashboard.php");
         exit;
     }

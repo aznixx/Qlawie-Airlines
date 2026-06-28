@@ -1,5 +1,4 @@
 <?php
-include __DIR__ . "/../app/page-includes/laden/laad-wachtwoord-vergeten.php";
 include __DIR__ . "/../app/includes/navbar.php";
 ?>
 
@@ -10,12 +9,14 @@ include __DIR__ . "/../app/includes/navbar.php";
             <h1>Wachtwoord vergeten</h1>
             <p>Vul je e-mail in om je wachtwoord te resetten.</p>
 
-            <?php if ($melding !== '') { ?>
-                <p class="melding"><?= $melding ?></p>
+            <?php if (isset($_SESSION['melding'])) { ?>
+                <p class="melding"><?= $_SESSION['melding'] ?></p>
+                <?php unset($_SESSION['melding'])?>
             <?php } ?>
 
-            <?php if ($reset_link !== '') { ?>
-                <a class="knop" href="<?= $reset_link ?>">Reset wachtwoord</a>
+            <?php if (isset($_SESSION['reset_link'])) { ?>
+                <a class="knop" href="<?= $_SESSION['reset_link'] ?>">Reset wachtwoord</a>
+                <?php unset($_SESSION['reset_link'])?>
             <?php } ?>
 
             <form class="form" action="../app/page-includes/verwerken/verwerk-wachtwoord-vergeten.php" method="post">

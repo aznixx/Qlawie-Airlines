@@ -1,8 +1,4 @@
 <?php
-$melding = '';
-$token = $_GET['token'] ;
+session_start();
 
-if (isset($_SESSION['melding'])) {
-    $melding = $_SESSION['melding'];
-    unset($_SESSION['melding']);
-}
+$token = $_GET['token'];

@@ -51,12 +51,12 @@
 
                         <label>
                             Vertrekdatum
-                            <input type="text" name="vertrekdatum" value="<?= $reis_bewerken ? $reis_bewerken['vertrekdatum'] : '' ?>">
+                            <input type="date" name="vertrekdatum" value="<?= $reis_bewerken ? $reis_bewerken['vertrekdatum'] : '' ?>">
                         </label>
 
                         <label>
                             Terugkomstdatum
-                            <input type="text" name="terugkomstdatum" value="<?= $reis_bewerken ? $reis_bewerken['terugkomstdatum'] : '' ?>">
+                            <input type="date" name="terugkomstdatum" value="<?= $reis_bewerken ? $reis_bewerken['terugkomstdatum'] : '' ?>">
                         </label>
 
                         <label>
@@ -64,10 +64,19 @@
                             <input type="number" name="duur_dagen" value="<?= $reis_bewerken ? $reis_bewerken['duur_dagen'] : '' ?>">
                         </label>
 
-                        <label>
-                            Reisklasse
-                            <input type="text" name="reisklasse" value="<?= $reis_bewerken ? $reis_bewerken['reisklasse'] : '' ?>">
-                        </label>
+                        <select name="reisklasse">
+                            <option value="Economy" <?= ($reis_bewerken && $reis_bewerken['reisklasse'] == 'Economy') ? 'selected' : '' ?>>
+                                Economy
+                            </option>
+
+                            <option value="Premium Economy" <?php if ($reis_bewerken && $reis_bewerken['reisklasse'] == 'Premium Economy') {  echo 'selected'; } else { echo ''; }?>>
+                                Premium Economy
+                            </option>
+
+                            <option value="Business" <?= ($reis_bewerken && $reis_bewerken['reisklasse'] == 'Business') ? 'selected' : '' ?>>
+                                Business
+                            </option>
+                        </select>
 
                         <label>
                             Prijs vanaf

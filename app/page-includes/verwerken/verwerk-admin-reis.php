@@ -10,7 +10,7 @@ if (!isset($_SESSION['gebruiker_id']) || $_SESSION['rol'] !== 'beheerder') {
 $actie = $_POST['actie'] ;
 $id = $_POST['id'] ;
 
-if ($actie === 'verwijderen') {
+if ($actie == 'verwijderen') {
     $stmt = $pdo->prepare("DELETE FROM reizen WHERE id = :id");
     $stmt->bindParam(':id', $id);
     $stmt->execute();
@@ -26,14 +26,14 @@ $vertrek_luchthaven = $_POST['vertrek_luchthaven'] ;
 $aankomst_luchthaven = $_POST['aankomst_luchthaven'] ;
 $vertrekdatum = $_POST['vertrekdatum'] ;
 $terugkomstdatum = $_POST['terugkomstdatum'] ;
-$duur_dagen = $_POST['duur_dagen'] ?? 1;
-$reisklasse = $_POST['reisklasse'] ?? 'Economy';
-$prijs_vanaf = $_POST['prijs_vanaf'] ?? 0;
-$beschikbare_plekken = $_POST['beschikbare_plekken'] ?? 0;
+$duur_dagen = $_POST['duur_dagen'];
+$reisklasse = $_POST['reisklasse'];
+$prijs_vanaf = $_POST['prijs_vanaf'];
+$beschikbare_plekken = $_POST['beschikbare_plekken'];
 $bagage_inbegrepen = $_POST['bagage_inbegrepen'] ;
-$afbeelding = $_POST['afbeelding'] ?? 'assets/landingpage.jpg';
+$afbeelding = $_POST['afbeelding'];
 
-if ($actie === 'wijzigen') {
+if ($actie == 'wijzigen') {
     $stmt = $pdo->prepare("UPDATE reizen SET
     titel = :titel,
     korte_beschrijving = :korte_beschrijving,

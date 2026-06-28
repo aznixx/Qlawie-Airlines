@@ -3,6 +3,10 @@ session_start();
 
 require_once __DIR__ . "/../../config/pdo.php";
 
+if (!isset($_SESSION['gebruiker_id'])) {
+    header("Location: ../../../public/inloggen.php");
+    exit;
+}
 
 $stmt = $pdo->prepare("SELECT * FROM gebruikers WHERE id = :gebruiker_id");
 $stmt->bindParam(":gebruiker_id", $_SESSION['gebruiker_id']);

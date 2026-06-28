@@ -1,5 +1,5 @@
 <?php
-if (session_status() === PHP_SESSION_NONE) {
+if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 ?>
@@ -34,7 +34,7 @@ if (session_status() === PHP_SESSION_NONE) {
                         <a class="knop" href="/public/inloggen.php">Inloggen</a>
                         <a class="knop" href="/public/registreren.php">Registreren</a>
                     <?php } else { ?>
-                        <?php if (isset($_SESSION['rol']) && $_SESSION['rol'] === 'beheerder') { ?>
+                        <?php if (isset($_SESSION['rol']) && $_SESSION['rol'] == 'beheerder') { ?>
                             <a class="knop-donker" href="/public/admin/admin_dashboard.php">Admin</a>
                         <?php } ?>
 

@@ -9,7 +9,7 @@ $token = $_POST['tijdelijkeKey'];
 $wachtwoord = $_POST['wachtwoord'];
 $wachtwoord_herhalen = $_POST['wachtwoord_herhalen'];
 
-if ($wachtwoord === '') {
+if ($wachtwoord == '') {
     $_SESSION['melding'] = "Vul alle velden in.";
     header("Location: ../../../public/wachtwoord-resetten.php");
     exit;

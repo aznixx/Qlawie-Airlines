@@ -29,10 +29,6 @@
                     <input type="hidden" name="id" value="<?= $vlucht_bewerken ? $vlucht_bewerken['id'] : '' ?>">
 
                     <div class="formulier-grid">
-                        <label>
-                            Vlucht nummer
-                            <input type="text" name="vlucht_nummer" value="<?= $vlucht_bewerken ? $vlucht_bewerken['vlucht_nummer'] : '' ?>">
-                        </label>
 
                         <label>
                             Vertrek luchthaven
@@ -46,12 +42,12 @@
 
                         <label>
                             Vertrek datum
-                            <input type="text" name="vertrek_datum" value="<?= $vlucht_bewerken ? $vlucht_bewerken['vertrek_datum'] : '' ?>">
+                            <input type="date" name="vertrek_datum" value="<?= $vlucht_bewerken ? $vlucht_bewerken['vertrek_datum'] : '' ?>">
                         </label>
 
                         <label>
                             Aankomst datum
-                            <input type="text" name="aankomst_datum" value="<?= $vlucht_bewerken ? $vlucht_bewerken['aankomst_datum'] : '' ?>">
+                            <input type="date" name="aankomst_datum" value="<?php if ($vlucht_bewerken) { echo $vlucht_bewerken['aankomst_datum']; } else { echo '';} ?>">
                         </label>
 
                         <label>
@@ -63,9 +59,16 @@
                             Stoelen
                             <input type="number" name="stoelen" value="<?= $vlucht_bewerken ? $vlucht_bewerken['stoelen'] : '' ?>">
                         </label>
+
+                        <label>
+                            Afbeelding (assets/....)
+                            <input type="text" name="afbeelding" value="<?= $vlucht_bewerken ? $vlucht_bewerken['afbeelding'] : '' ?>">
+                        </label>
                     </div>
 
                     <button class="btn-goud" type="submit"><?= $vlucht_bewerken ? 'Wijzigen' : 'Toevoegen' ?></button>
+
+
                     <?php if ($vlucht_bewerken) { ?>
                         <a class="btn-wit" href="vluchten.php">Annuleren</a>
                     <?php } ?>

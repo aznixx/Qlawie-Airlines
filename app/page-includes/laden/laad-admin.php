@@ -2,6 +2,11 @@
 session_start();
 require_once __DIR__ . "/../../config/pdo.php";
 
+if (!isset($_SESSION['gebruiker_id']) || $_SESSION['rol'] !== 'beheerder') {
+    header("Location: ../../../public/index.php");
+    exit;
+}
+
 $stmt = $pdo->prepare("SELECT * FROM vluchten ORDER BY vertrek_datum");
 $stmt->execute();
 $vluchten = $stmt->fetchAll();

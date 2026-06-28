@@ -1,7 +1,6 @@
 <?php
 include __DIR__ . "/../app/includes/navbar.php";
-$foutmelding = $_SESSION['foutmelding'] ;
-unset($_SESSION['foutmelding']);
+
 ?>
 
 <main>
@@ -11,9 +10,7 @@ unset($_SESSION['foutmelding']);
             <h1>Stuur ons een bericht</h1>
             <p>Heb je een vraag over een reis of boeking? Stuur ons dan een bericht.</p>
 
-            <?php if ($foutmelding !== '') { ?>
-                <p class="melding"><?= $foutmelding ?></p>
-            <?php } ?>
+            <?php include("../app/page-includes/laden/laad-foutmelding.php") ?>
 
             <form class="form" action="../app/page-includes/verwerken/verwerk-contactformulier.php" method="post">
                 <input type="text" name="naam" placeholder="Naam">

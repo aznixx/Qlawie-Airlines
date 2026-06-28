@@ -9,13 +9,12 @@ $email = '';
 $onderwerp = '';
 $bericht = '';
 
-
 $naam = $_POST['naam'];
 $email = $_POST['email'];
 $onderwerp = $_POST['onderwerp'];
 $bericht = $_POST['bericht'];
 
-if ($naam === '' || $email === '' || $onderwerp === '' || $bericht === '') {
+if ($naam == '' || $email == '' || $onderwerp == '' || $bericht == '') {
     $_SESSION['foutmelding'] = "Vul alle velden in.";
     header("Location: ../../../public/contact.php");
     exit;

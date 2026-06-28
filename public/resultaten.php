@@ -9,6 +9,12 @@ include __DIR__ . "/../app/includes/navbar.php";
             <p class="eyebrow">Resultaten</p>
             <h1>Gevonden reizen</h1>
             <p>Zoekterm: <?php echo $zoek ?: "alles"; ?></p>
+            <?php if ($vertrekdatum != '') { ?>
+                <p>Vertrekdatum: <?= $vertrekdatum ?></p>
+            <?php } ?>
+            <?php if ($terugkomstdatum != '') { ?>
+                <p>Terugkomstdatum: <?= $terugkomstdatum ?></p>
+            <?php } ?>
         </div>
     </section>
 

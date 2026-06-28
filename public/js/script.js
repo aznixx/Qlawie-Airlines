@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function () {
             var reis = boekForm.querySelector('select[name="reis_id"]');
             var vlucht = boekForm.querySelector('select[name="vlucht_id"]');
 
-            if (reis.value === '' && vlucht.value === '') {
+            if (reis.value == '' && vlucht.value == '') {
                 alert('Kies een reis of vlucht.');
                 event.preventDefault();
             }

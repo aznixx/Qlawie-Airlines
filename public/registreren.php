@@ -1,8 +1,6 @@
 <?php
 include __DIR__ . "/../app/includes/navbar.php";
 
-$foutmelding = $_SESSION['foutmelding'] ;
-unset($_SESSION['foutmelding']);
 ?>
 
 <main>
@@ -12,9 +10,7 @@ unset($_SESSION['foutmelding']);
             <h1>Account aanmaken</h1>
             <p>Maak een account aan om je gegevens en reizen later makkelijk te beheren.</p>
 
-            <?php if ($foutmelding !== '') { ?>
-                <p class="melding"><?= $foutmelding ?></p>
-            <?php } ?>
+            <?php include("../app/page-includes/laden/laad-foutmelding.php") ?>
 
             <form class="wachtwoordForm form form-grid" action="../app/page-includes/verwerken/verwerk-registratie.php" method="post">
                 <label>

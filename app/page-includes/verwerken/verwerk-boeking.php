@@ -2,6 +2,11 @@
 session_start();
 require_once __DIR__ . "/../../config/pdo.php";
 
+if (!isset($_SESSION['gebruiker_id'])) {
+    header("Location: ../../../public/inloggen.php");
+    exit;
+}
+
 $reis_id = $_POST['reis_id'];
 $vlucht_id = $_POST['vlucht_id'];
 $naam = $_POST['naam'];
@@ -13,13 +18,13 @@ $bagage = $_POST['bagage'] ?? 'Handbagage';
 $opmerkingen = $_POST['opmerkingen'];
 $gebruiker_id = $_SESSION['gebruiker_id'];
 
-if ($naam === '' || $email === '') {
+if ($naam == '' || $email == '') {
     $_SESSION['foutmelding'] = "Vul je naam en e-mail in.";
     header("Location: ../../../public/boeken.php");
     exit;
 }
 
-if ($reis_id === '' && $vlucht_id === '') {
+if ($reis_id == '' && $vlucht_id == '') {
     $_SESSION['foutmelding'] = "Kies een reis of vlucht.";
     header("Location: ../../../public/boeken.php");
     exit;
@@ -73,19 +78,19 @@ VALUES
 (:boekingsnummer, :gebruiker_id, :reis_id, :vlucht_id, :klant_naam, :klant_email, :klant_telefoon, :aantal_reizigers, :reisklasse, :bagage_keuze, :totaalprijs, 'aangevraagd', :opmerkingen)");
 
 $stmt->bindParam(':boekingsnummer', $boekingsnummer);
-if ($gebruiker_id === null) {
+if ($gebruiker_id == null) {
     $stmt->bindParam(':gebruiker_id', $gebruiker_id, PDO::PARAM_NULL);
 } else {
     $stmt->bindParam(':gebruiker_id', $gebruiker_id);
 }
 
-if ($reis_id === null) {
+if ($reis_id == null) {
     $stmt->bindParam(':reis_id', $reis_id, PDO::PARAM_NULL);
 } else {
     $stmt->bindParam(':reis_id', $reis_id);
 }
 
-if ($vlucht_id === null) {
+if ($vlucht_id == null) {
     $stmt->bindParam(':vlucht_id', $vlucht_id, PDO::PARAM_NULL);
 } else {
     $stmt->bindParam(':vlucht_id', $vlucht_id);

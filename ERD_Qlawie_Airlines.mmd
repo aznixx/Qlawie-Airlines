@@ -5,8 +5,8 @@ erDiagram
         varchar achternaam
         varchar email
         varchar telefoon
-        varchar wachtwoord_hash
         enum rol
+        varchar wachtwoord
     }
 
     reizen {
@@ -30,8 +30,8 @@ erDiagram
         int id PK
         varchar vertrek_luchthaven
         varchar aankomst_luchthaven
-        datetime vertrek_datum
-        datetime aankomst_datum
+        date vertrek_datum
+        date aankomst_datum
         decimal prijs
         int stoelen
         varchar vlucht_nummer
@@ -43,7 +43,6 @@ erDiagram
         varchar boekingsnummer
         int_unsigned gebruiker_id FK
         int_unsigned reis_id FK
-        int vlucht_id FK
         varchar klant_naam
         varchar klant_email
         varchar klant_telefoon
@@ -53,6 +52,7 @@ erDiagram
         decimal totaalprijs
         enum status
         text opmerkingen
+        int vlucht_id FK
     }
 
     recensies {
@@ -77,9 +77,8 @@ erDiagram
     wachtwoord_resets {
         int_unsigned id PK
         int_unsigned gebruiker_id FK
-        varchar token_hash
-        datetime verloopt_op
         datetime gebruikt_op
+        int tijdelijkeKey
     }
 
     gebruikers ||--o{ boekingen : maakt

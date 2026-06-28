@@ -7,13 +7,11 @@ if (!isset($_SESSION['gebruiker_id'])) {
     exit;
 }
 
-$boekingsnummer = $_POST['boekingsnummer'] ?? '';
+$boekingsnummer = $_POST['boekingsnummer'];
 $gebruiker_id = $_SESSION['gebruiker_id'];
 
-if ($boekingsnummer !== '') {
-    $stmt = $pdo->prepare("UPDATE boekingen
-    SET status = 'geannuleerd'
-    WHERE boekingsnummer = :boekingsnummer AND gebruiker_id = :gebruiker_id");
+if ($boekingsnummer != '') {
+    $stmt = $pdo->prepare("DELETE FROM boekingen WHERE boekingsnummer = :boekingsnummer AND gebruiker_id = :gebruiker_id");
     $stmt->bindParam(':boekingsnummer', $boekingsnummer);
     $stmt->bindParam(':gebruiker_id', $gebruiker_id);
     $stmt->execute();

@@ -10,9 +10,7 @@ include __DIR__ . "/../app/includes/navbar.php";
             <h1>Boeking maken</h1>
             <p>Kies een reis of losse vlucht en vul je gegevens in.</p>
 
-            <?php if ($foutmelding !== '') { ?>
-                <p class="melding"><?= $foutmelding ?></p>
-            <?php } ?>
+            <?php include("../app/page-includes/laden/laad-foutmelding.php") ?>
 
             <form id="boekForm" class="form form-grid" action="../app/page-includes/verwerken/verwerk-boeking.php" method="post">
                 <label>

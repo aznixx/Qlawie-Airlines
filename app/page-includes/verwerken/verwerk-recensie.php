@@ -12,7 +12,7 @@ $rating = $_POST['rating'];
 $bericht = $_POST['bericht'];
 $gebruiker_id = $_SESSION['gebruiker_id'];
 
-if ($reis_id === '' || $bericht === '') {
+if ($reis_id == '' || $bericht == '') {
     header("Location: ../../../public/account.php");
     exit;
 }

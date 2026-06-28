@@ -102,12 +102,19 @@ include __DIR__ . "/../app/includes/navbar.php";
                             <div>
                                 <?php if ($boeking['status'] !== 'geannuleerd') { ?>
                                     <form action="../app/page-includes/verwerken/verwerk-annuleren-boeking.php" method="post">
-                                        <input type="hidden" name="boeking_id" value="<?= $boeking['id'] ?>">
+                                        <input type="hidden" name="boekingsnummer" value="<?= $boeking['boekingsnummer'] ?>">
                                         <button class="knop-donker" type="submit">Annuleren</button>
                                     </form>
                                 <?php } else { ?>
                                     <p class="text-bold">Geannuleerd</p>
                                 <?php } ?>
+
+                                <?php if ($boeking['status'] == 'geannuleerd') {?>
+                                <form action="../app/page-includes/verwerken/verwerk-verwijder-boeking.php" method="post">
+                                    <input type="hidden" name="boekingsnummer" value="<?= $boeking['boekingsnummer'] ?>">
+                                    <button class="knop-donker" type="submit">Verwijderen</button>
+                                </form>
+                                <?php }?>
                             </div>
                         </article>
                     <?php } ?>

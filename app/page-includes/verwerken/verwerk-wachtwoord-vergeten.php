@@ -4,7 +4,7 @@ require_once __DIR__ . "/../../config/pdo.php";
 
 $email = $_POST['email'] ;
 
-if ($email === '') {
+if ($email == '') {
     $_SESSION['melding'] = "Vul je e-mail in.";
     header("Location: ../../../public/wachtwoord-vergeten.php");
     exit;
@@ -18,7 +18,8 @@ $gebruiker = $stmt->fetch();
 if ($gebruiker) {
     $gebruiker_id = $gebruiker['id'];
 
-    $tijdelijkeKey = rand(0, 10);
+    $tijdelijkeKey = rand(0, 100);
+    
     $stmt = $pdo->prepare("INSERT INTO wachtwoord_resets (gebruiker_id, tijdelijkeKey)
     VALUES (:gebruiker_id, :tijdKey)");
     $stmt->bindParam(':gebruiker_id', $gebruiker_id);

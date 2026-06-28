@@ -10,12 +10,12 @@ if (!isset($_SESSION['gebruiker_id']) || $_SESSION['rol'] !== 'beheerder') {
 $boeking_id = $_POST['boeking_id'] ?? $_POST['id'] ;
 $status = $_POST['status'] ;
 
-if ($boeking_id === '' || $status === '') {
+if ($boeking_id == '' || $status == '') {
     header("Location: ../../../public/admin/boekingen.php");
     exit;
 }
 
-if ($status === 'geannuleerd') {
+if ($status == 'geannuleerd') {
     $stmt = $pdo->prepare("UPDATE boekingen
     SET status = :status
     WHERE id = :id");

@@ -10,7 +10,7 @@ if (!isset($_SESSION['gebruiker_id']) || $_SESSION['rol'] !== 'beheerder') {
 $recensie_id = $_POST['recensie_id'] ?? $_POST['id'] ;
 $status = $_POST['status'] ;
 
-if ($recensie_id === '' || $status === '') {
+if ($recensie_id == '' || $status == '') {
     header("Location: ../../../public/admin/orders.php");
     exit;
 }
